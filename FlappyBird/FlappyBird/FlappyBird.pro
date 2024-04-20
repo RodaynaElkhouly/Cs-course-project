@@ -14,14 +14,16 @@ SOURCES += \
     ground.cpp \
     main.cpp \
     mainwindow.cpp \
-    pipe.cpp
+    pipe.cpp \
+    prize.cpp
 
 HEADERS += \
     bird.h \
     game.h \
     ground.h \
     mainwindow.h \
-    pipe.h
+    pipe.h \
+    prize.h
 
 FORMS += \
     mainwindow.ui
