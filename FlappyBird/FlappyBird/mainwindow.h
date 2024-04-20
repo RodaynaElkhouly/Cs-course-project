@@ -3,6 +3,7 @@
 
 #include "game.h"
 #include <QMainWindow>
+#include <QGraphicsPixmapItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,5 +22,6 @@ public:
 private:
     Ui::MainWindow *ui;
     Game *game;
+    QGraphicsPixmapItem *BackgroundPic;
 };
 #endif // MAINWINDOW_H

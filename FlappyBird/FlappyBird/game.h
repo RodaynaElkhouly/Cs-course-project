@@ -25,7 +25,6 @@ public:
     void displayGameOverPanel();
     void FreezeScene();
     void UpdateScore();
-    void keyPressEvent(QKeyEvent *event) override;
     void setScore(int);
     bool getGameOn();
     void setGameOb(bool);
