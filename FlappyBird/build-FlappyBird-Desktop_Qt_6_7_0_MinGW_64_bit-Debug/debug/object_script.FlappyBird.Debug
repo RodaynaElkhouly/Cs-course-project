@@ -8,4 +8,5 @@ debug/prize.o
 debug/qrc_Resources.o
 debug/moc_game.o
 debug/moc_mainwindow.o
+debug/moc_pipe.o
 debug/moc_prize.o
