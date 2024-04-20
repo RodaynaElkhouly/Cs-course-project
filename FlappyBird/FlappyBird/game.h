@@ -31,6 +31,7 @@ public:
 protected:
     QGraphicsPixmapItem *startImage;
     QGraphicsPixmapItem *gameOverImage;
+    QGraphicsPixmapItem *BackgroundPic;
     QGraphicsTextItem *scoreText;
     Bird *birdItem;
     Pipe *pipeItem;

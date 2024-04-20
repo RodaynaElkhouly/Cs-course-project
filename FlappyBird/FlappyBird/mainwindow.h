@@ -23,5 +23,6 @@ private:
     Ui::MainWindow *ui;
     Game *game;
     QGraphicsPixmapItem *BackgroundPic;
+    QGraphicsPixmapItem *groundPic;
 };
 #endif // MAINWINDOW_H

@@ -2,6 +2,7 @@
 #define PIPE_H
 
 #include <QObject>
+#include <QGraphicsItemGroup>
 
 class Pipe
 {
