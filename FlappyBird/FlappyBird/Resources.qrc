@@ -1,1 +1,14 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/ressources/pipe">
+        <file>images.jpg</file>
+        <file>pngtree-ancient-egypt-papyrus-or-stone-column-with-eye-png-image_2061360.jpg</file>
+    </qresource>
+    <qresource prefix="/ressources/bird">
+        <file>0.png</file>
+        <file>1.png</file>
+        <file>2.png</file>
+    </qresource>
+    <qresource prefix="/ressources/backgroundimage">
+        <file>2.pyramids-desert-beautiful-landscape-cartoon-260nw-1688951938.png</file>
+    </qresource>
+</RCC>
