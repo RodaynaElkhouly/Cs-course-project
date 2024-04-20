@@ -9,6 +9,7 @@
 #include "bird.h"
 #include "pipe.h"
 #include "ground.h"
+#include "prize.h"
 
 
 
@@ -23,14 +24,25 @@ public:
     void displayYouWonPanel();
     void displayGameOverPanel();
     void FreezeScene();
+    void UpdateScore();
     void keyPressEvent(QKeyEvent *event) override;
+    void setScore(int);
+    bool getGameOn();
+    void setGameOb(bool)
 protected:
     QGraphicsPixmapItem *startImage;
     QGraphicsPixmapItem *gameOverImage;
-    Bird *bird;
-    QTimer *GameTimer;
+    Bird *birdItem;
+    Pipe *pipeItem;
+    Prize *prizes;
+    Ground *groundItem;
+    QTimer *gameTimer;
     QTimer *pipeTimer;
     QTimer *prizeTimer;
+    int Score;
+    bool isGameOn;
+    bool isGameOver;
+    bool isGameStarted;
     void setUpTimers();
     void intialGameState();
     bool isItemCollected();
