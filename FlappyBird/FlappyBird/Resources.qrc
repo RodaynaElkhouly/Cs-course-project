@@ -11,4 +11,7 @@
     <qresource prefix="/ressources/backgroundimage">
         <file>DesertPic-transformed (1).png</file>
     </qresource>
+    <qresource prefix="/ressources/grounds">
+        <file>ground(1).png</file>
+    </qresource>
 </RCC>
