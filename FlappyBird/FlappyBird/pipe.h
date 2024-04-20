@@ -11,8 +11,8 @@ class Pipe : public QObject, public QGraphicsItemGroup
 public:
     explicit Pipe();
 private:
-
-
+    bool isPass;
+    QGraphicsPixmapItem *Pipes;
 signals:
 
 public slots:
