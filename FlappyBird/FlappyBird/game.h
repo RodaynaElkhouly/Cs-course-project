@@ -5,13 +5,13 @@
 #include <QGraphicsPixmapItem>
 #include <QTimer>
 #include <QObject>
-#include "game.h"
 #include "bird.h"
 #include "pipe.h"
 #include "ground.h"
 #include "prize.h"
 
-
+#include <QObject>
+#include <QGraphicsScene>
 
 class Game : public QGraphicsScene
 {
