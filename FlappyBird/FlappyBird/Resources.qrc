@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/ressources/pipe">
-        <file>images.jpg</file>
-        <file>pngtree-ancient-egypt-papyrus-or-stone-column-with-eye-png-image_2061360.jpg</file>
+        <file>pngtree-ancient-egypt-papyrus-or-stone-column-with-eye-png-image_2061360.png</file>
     </qresource>
     <qresource prefix="/ressources/bird">
         <file>0.png</file>
