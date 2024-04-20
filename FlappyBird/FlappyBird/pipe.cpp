@@ -1,3 +1,8 @@
 #include "pipe.h"
 
-Pipe::Pipe() {}
+Pipe::Pipe() {
+
+
+
+
+}
