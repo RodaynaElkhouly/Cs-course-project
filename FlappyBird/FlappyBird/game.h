@@ -28,10 +28,11 @@ public:
     void keyPressEvent(QKeyEvent *event) override;
     void setScore(int);
     bool getGameOn();
-    void setGameOb(bool)
+    void setGameOb(bool);
 protected:
     QGraphicsPixmapItem *startImage;
     QGraphicsPixmapItem *gameOverImage;
+    QGraphicsTextItem *scoreText;
     Bird *birdItem;
     Pipe *pipeItem;
     Prize *prizes;
@@ -42,7 +43,6 @@ protected:
     int Score;
     bool isGameOn;
     bool isGameOver;
-    bool isGameStarted;
     void setUpTimers();
     void intialGameState();
     bool isItemCollected();
