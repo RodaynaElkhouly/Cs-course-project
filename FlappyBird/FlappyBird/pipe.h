@@ -12,6 +12,7 @@ public:
     explicit Pipe();
 private:
     bool isPass;
+    bool GameOver;
     QGraphicsPixmapItem *Pipes;
 signals:
 
