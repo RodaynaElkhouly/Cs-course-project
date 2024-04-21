@@ -28,6 +28,7 @@ public:
     void setScore(int);
     bool getGameOn();
     void setGameOb(bool);
+    void keyPressEvent(QKeyEvent * event) override;
 protected:
     QGraphicsPixmapItem *startImage;
     QGraphicsPixmapItem *gameOverImage;

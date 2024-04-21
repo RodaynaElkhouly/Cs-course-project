@@ -8,7 +8,7 @@
         <file>2.png</file>
     </qresource>
     <qresource prefix="/ressources/backgroundimage">
-        <file>vertical-bright-colorful-desert-landscape-flat-vector-43809635.jpg</file>
+        <file>Background.jpg</file>
     </qresource>
     <qresource prefix="/ressources/grounds">
         <file>ground(1).png</file>

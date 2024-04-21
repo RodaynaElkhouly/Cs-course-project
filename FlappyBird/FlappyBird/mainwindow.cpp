@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "pipe.h"
-#include <QGraphicsPixmapItem>;
+#include <QGraphicsPixmapItem>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -10,16 +10,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     game = new Game(this);
     game->setSceneRect(0, 0, 450, 650);
-    BackgroundPic = new QGraphicsPixmapItem(QPixmap(":/ressources/backgroundimage/DesertPic-transformed (1).png"));
+    BackgroundPic = new QGraphicsPixmapItem(QPixmap(":/ressources/backgroundimage/Background.jpg"));
     game->addItem(BackgroundPic);
     BackgroundPic->setPos(QPointF(0,0));
 
-    groundPic = new QGraphicsPixmapItem(QPixmap(":/ressources/grounds/ground(1).png").scaledToWidth(450));
-    game->addItem(groundPic);
-    groundPic->setPos(QPointF(0,570));
 
-    Pipe *pipe = new Pipe();
-    game->addItem(pipe);
 
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
