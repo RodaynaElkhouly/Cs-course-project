@@ -42,11 +42,12 @@ protected:
     QTimer *pipeTimer;
     QTimer *prizeTimer;
     int Score;
-    bool isGameOn;
+    bool isGameOn = 0;
     bool isGameOver;
     void setUpTimers();
     void intialGameState();
     bool isItemCollected();
+    void spawnPipe();
 
 
 

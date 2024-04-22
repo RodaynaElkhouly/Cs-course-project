@@ -19,6 +19,7 @@ private:
     bool isPass;
     bool GameOver;
     int yPosition;
+    void RemovePipe();
     QGraphicsPixmapItem *Pipes;
     QPropertyAnimation *PipeAnimation;
     qreal m_x;
