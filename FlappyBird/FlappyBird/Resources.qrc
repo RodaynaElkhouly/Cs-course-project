@@ -3,9 +3,9 @@
         <file>pillarr.png</file>
     </qresource>
     <qresource prefix="/ressources/bird">
-        <file>0.png</file>
-        <file>1.png</file>
-        <file>2.png</file>
+        <file>up.png</file>
+        <file>middle.png</file>
+        <file>down.png</file>
     </qresource>
     <qresource prefix="/ressources/backgroundimage">
         <file>Background.jpg</file>
