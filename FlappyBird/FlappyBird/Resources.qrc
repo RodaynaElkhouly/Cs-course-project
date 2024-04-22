@@ -13,4 +13,8 @@
     <qresource prefix="/ressources/grounds">
         <file>ground(1).png</file>
     </qresource>
+    <qresource prefix="/ressources/items">
+        <file>item1</file>
+        <file>item2</file>
+    </qresource>
 </RCC>
