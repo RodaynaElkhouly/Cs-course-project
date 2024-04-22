@@ -22,13 +22,24 @@ private:
     bool WingDir ;
 
     qreal m_y;
+    qreal m_rotation;
+    QPropertyAnimation * yAnimation;
+    QPropertyAnimation * rotationAnimation;
+    qreal groundPos;
 
 public:
-   explicit Bird ( QPixmap pixmap);
+    explicit Bird ( QPixmap pixmap);
 
 
-   qreal y() const;
-   void setY(qreal newY);
+    qreal y() const;
+    qreal rotation() const;
+
+
+signals:
+public slots:
+    void setRotation(qreal newRotation);
+     void setY(qreal newY);
+    void rotateTo(const qreal &end, const int& duration, const QEasingCurve& curve);
 };
 
 #endif // BIRD_H

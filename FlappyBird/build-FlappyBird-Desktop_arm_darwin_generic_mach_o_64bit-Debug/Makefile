@@ -59,8 +59,10 @@ SOURCES       = ../FlappyBird/bird.cpp \
 		../FlappyBird/mainwindow.cpp \
 		../FlappyBird/pipe.cpp \
 		../FlappyBird/prize.cpp qrc_Resources.cpp \
+		moc_bird.cpp \
 		moc_game.cpp \
 		moc_mainwindow.cpp \
+		moc_pipe.cpp \
 		moc_prize.cpp
 OBJECTS       = bird.o \
 		game.o \
@@ -70,8 +72,10 @@ OBJECTS       = bird.o \
 		pipe.o \
 		prize.o \
 		qrc_Resources.o \
+		moc_bird.o \
 		moc_game.o \
 		moc_mainwindow.o \
+		moc_pipe.o \
 		moc_prize.o
 DIST          = /Users/marwanosama/t2/6.6.2/macos/mkspecs/features/spec_pre.prf \
 		/Users/marwanosama/t2/6.6.2/macos/mkspecs/features/device_config.prf \
@@ -207,6 +211,7 @@ DIST          = /Users/marwanosama/t2/6.6.2/macos/mkspecs/features/spec_pre.prf 
 		/Users/marwanosama/t2/6.6.2/macos/mkspecs/features/qt_config.prf \
 		/Users/marwanosama/t2/6.6.2/macos/mkspecs/macx-clang/qmake.conf \
 		/Users/marwanosama/t2/6.6.2/macos/mkspecs/features/spec_post.prf \
+		../FlappyBird/.qmake.stash \
 		/Users/marwanosama/t2/6.6.2/macos/mkspecs/features/exclusive_builds.prf \
 		/Users/marwanosama/t2/6.6.2/macos/mkspecs/features/mac/sdk.prf \
 		/Users/marwanosama/t2/6.6.2/macos/mkspecs/features/toolchain.prf \
@@ -256,7 +261,7 @@ TARGET        = FlappyBird.app/Contents/MacOS/FlappyBird
 EXPORT_QMAKE_MAC_SDK = macosx
 EXPORT_QMAKE_MAC_SDK_VERSION = 11.3
 EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
-EXPORT__QMAKE_STASH_ = 
+EXPORT__QMAKE_STASH_ = /Users/marwanosama/Documents/GitHub/Cs-course-project/FlappyBird/build-FlappyBird-Desktop_arm_darwin_generic_mach_o_64bit-Debug/.qmake.stash
 EXPORT_VALID_ARCHS = x86_64 arm64
 EXPORT_DEFAULT_ARCHS = arm64
 EXPORT_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(if $(ARCHS), $(ARCHS), $(if $(EXPORT_DEFAULT_ARCHS), $(EXPORT_DEFAULT_ARCHS), $(EXPORT_VALID_ARCHS))))
@@ -406,6 +411,7 @@ Makefile: ../FlappyBird/FlappyBird.pro /Users/marwanosama/t2/6.6.2/macos/mkspecs
 		/Users/marwanosama/t2/6.6.2/macos/mkspecs/features/qt_config.prf \
 		/Users/marwanosama/t2/6.6.2/macos/mkspecs/macx-clang/qmake.conf \
 		/Users/marwanosama/t2/6.6.2/macos/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/marwanosama/t2/6.6.2/macos/mkspecs/features/exclusive_builds.prf \
 		/Users/marwanosama/t2/6.6.2/macos/mkspecs/features/mac/sdk.prf \
 		/Users/marwanosama/t2/6.6.2/macos/mkspecs/features/toolchain.prf \
@@ -575,6 +581,7 @@ Makefile: ../FlappyBird/FlappyBird.pro /Users/marwanosama/t2/6.6.2/macos/mkspecs
 /Users/marwanosama/t2/6.6.2/macos/mkspecs/features/qt_config.prf:
 /Users/marwanosama/t2/6.6.2/macos/mkspecs/macx-clang/qmake.conf:
 /Users/marwanosama/t2/6.6.2/macos/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/marwanosama/t2/6.6.2/macos/mkspecs/features/exclusive_builds.prf:
 /Users/marwanosama/t2/6.6.2/macos/mkspecs/features/mac/sdk.prf:
 /Users/marwanosama/t2/6.6.2/macos/mkspecs/features/toolchain.prf:
@@ -646,6 +653,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r FlappyBird.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -667,16 +675,29 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_Resources.cpp
 qrc_Resources.cpp: ../FlappyBird/Resources.qrc \
 		/Users/marwanosama/t2/6.6.2/macos/libexec/rcc \
-		../FlappyBird/pngtree-ancient-egypt-papyrus-or-stone-column-with-eye-png-image_2061360-removebg-preview.png \
-		../FlappyBird/2.pyramids-desert-beautiful-landscape-cartoon-260nw-1688951938.png \
-		../FlappyBird/2.png \
-		../FlappyBird/1.png \
-		../FlappyBird/0.png
+		../FlappyBird/item2 \
+		../FlappyBird/item1 \
+		../FlappyBird/ground(1).png \
+		../FlappyBird/pillarr.png \
+		../FlappyBird/Background.jpg \
+		../FlappyBird/down.png \
+		../FlappyBird/middle.png \
+		../FlappyBird/up.png
 	/Users/marwanosama/t2/6.6.2/macos/libexec/rcc -name Resources --no-zstd ../FlappyBird/Resources.qrc -o qrc_Resources.cpp
 
-compiler_moc_header_make_all: moc_game.cpp moc_mainwindow.cpp moc_prize.cpp
+compiler_moc_header_make_all: moc_bird.cpp moc_game.cpp moc_mainwindow.cpp moc_pipe.cpp moc_prize.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_game.cpp moc_mainwindow.cpp moc_prize.cpp
+	-$(DEL_FILE) moc_bird.cpp moc_game.cpp moc_mainwindow.cpp moc_pipe.cpp moc_prize.cpp
+moc_bird.cpp: ../FlappyBird/bird.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QObject \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		/Users/marwanosama/t2/6.6.2/macos/libexec/moc
+	/Users/marwanosama/t2/6.6.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=12 -D__clang_minor__=0 -D__clang_patchlevel__=5 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/marwanosama/t2/6.6.2/macos/mkspecs/macx-clang -I/Users/marwanosama/Documents/GitHub/Cs-course-project/FlappyBird/FlappyBird -I/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers -I/Users/marwanosama/t2/6.6.2/macos/lib/QtGui.framework/Headers -I/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/marwanosama/t2/6.6.2/macos/lib ../FlappyBird/bird.h -o moc_bird.cpp
+
 moc_game.cpp: ../FlappyBird/game.h \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsScene \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
@@ -687,7 +708,10 @@ moc_game.cpp: ../FlappyBird/game.h \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QObject \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h \
 		../FlappyBird/bird.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../FlappyBird/pipe.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsItemGroup \
 		../FlappyBird/ground.h \
 		../FlappyBird/prize.h \
 		/Users/marwanosama/t2/6.6.2/macos/libexec/moc
@@ -704,13 +728,27 @@ moc_mainwindow.cpp: ../FlappyBird/mainwindow.h \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QObject \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h \
 		../FlappyBird/bird.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../FlappyBird/pipe.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsItemGroup \
 		../FlappyBird/ground.h \
 		../FlappyBird/prize.h \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/marwanosama/t2/6.6.2/macos/libexec/moc
 	/Users/marwanosama/t2/6.6.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=12 -D__clang_minor__=0 -D__clang_patchlevel__=5 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/marwanosama/t2/6.6.2/macos/mkspecs/macx-clang -I/Users/marwanosama/Documents/GitHub/Cs-course-project/FlappyBird/FlappyBird -I/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers -I/Users/marwanosama/t2/6.6.2/macos/lib/QtGui.framework/Headers -I/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/marwanosama/t2/6.6.2/macos/lib ../FlappyBird/mainwindow.h -o moc_mainwindow.cpp
+
+moc_pipe.cpp: ../FlappyBird/pipe.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QObject \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsItemGroup \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		/Users/marwanosama/t2/6.6.2/macos/libexec/moc
+	/Users/marwanosama/t2/6.6.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=12 -D__clang_minor__=0 -D__clang_patchlevel__=5 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/marwanosama/t2/6.6.2/macos/mkspecs/macx-clang -I/Users/marwanosama/Documents/GitHub/Cs-course-project/FlappyBird/FlappyBird -I/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers -I/Users/marwanosama/t2/6.6.2/macos/lib/QtGui.framework/Headers -I/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/marwanosama/t2/6.6.2/macos/lib ../FlappyBird/pipe.h -o moc_pipe.cpp
 
 moc_prize.cpp: ../FlappyBird/prize.h \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QObject \
@@ -743,7 +781,13 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 
 bird.o: ../FlappyBird/bird.cpp ../FlappyBird/bird.h \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QObject \
-		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QTimer \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qtimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bird.o ../FlappyBird/bird.cpp
 
 game.o: ../FlappyBird/game.cpp ../FlappyBird/game.h \
@@ -756,7 +800,10 @@ game.o: ../FlappyBird/game.cpp ../FlappyBird/game.h \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QObject \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h \
 		../FlappyBird/bird.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../FlappyBird/pipe.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsItemGroup \
 		../FlappyBird/ground.h \
 		../FlappyBird/prize.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o game.o ../FlappyBird/game.cpp
@@ -777,7 +824,10 @@ main.o: ../FlappyBird/main.cpp ../FlappyBird/mainwindow.h \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QObject \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h \
 		../FlappyBird/bird.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../FlappyBird/pipe.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsItemGroup \
 		../FlappyBird/ground.h \
 		../FlappyBird/prize.h \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
@@ -797,7 +847,10 @@ mainwindow.o: ../FlappyBird/mainwindow.cpp ../FlappyBird/mainwindow.h \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QObject \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h \
 		../FlappyBird/bird.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../FlappyBird/pipe.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsItemGroup \
 		../FlappyBird/ground.h \
 		../FlappyBird/prize.h \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
@@ -807,7 +860,14 @@ mainwindow.o: ../FlappyBird/mainwindow.cpp ../FlappyBird/mainwindow.h \
 
 pipe.o: ../FlappyBird/pipe.cpp ../FlappyBird/pipe.h \
 		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QObject \
-		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsItemGroup \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/Users/marwanosama/t2/6.6.2/macos/lib/QtWidgets.framework/Headers/qgraphicsscene.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pipe.o ../FlappyBird/pipe.cpp
 
 prize.o: ../FlappyBird/prize.cpp ../FlappyBird/prize.h \
@@ -818,11 +878,17 @@ prize.o: ../FlappyBird/prize.cpp ../FlappyBird/prize.h \
 qrc_Resources.o: qrc_Resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_Resources.o qrc_Resources.cpp
 
+moc_bird.o: moc_bird.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_bird.o moc_bird.cpp
+
 moc_game.o: moc_game.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_game.o moc_game.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_pipe.o: moc_pipe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_pipe.o moc_pipe.cpp
 
 moc_prize.o: moc_prize.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_prize.o moc_prize.cpp
