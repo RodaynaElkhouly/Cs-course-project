@@ -33,6 +33,8 @@ public:
     qreal rotation() const;
     void Jump();
     void makeBirdFall();
+    void startFlying();
+    void stopFlying();
 
 
 

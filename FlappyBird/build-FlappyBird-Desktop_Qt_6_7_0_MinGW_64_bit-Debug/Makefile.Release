@@ -132,6 +132,7 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_Resources.cpp
 release/qrc_Resources.cpp: ../FlappyBird/Resources.qrc \
 		C:/Qt/6.7.0/mingw_64/bin/rcc.exe \
+		../FlappyBird/klipartz.com.png \
 		../FlappyBird/item2 \
 		../FlappyBird/item1 \
 		../FlappyBird/ground(1).png \
@@ -1262,7 +1263,45 @@ release/game.o: ../FlappyBird/game.cpp ../FlappyBird/game.h \
 		../FlappyBird/pipe.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QGraphicsItemGroup \
 		../FlappyBird/ground.h \
-		../FlappyBird/prize.h
+		../FlappyBird/prize.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/QKeyEvent \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qevent.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qiodevice.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qurl.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qeventpoint.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qvector2d.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qvectornd.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpointingdevice.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qinputdevice.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qscreen.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QList \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QRect \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QSize \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QSizeF \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/QTransform \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qscreen_platform.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qguiapplication.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qtsan_impl.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qpromise.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qinputmethod.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qlocale.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qguiapplication_platform.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qkeysequence.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\game.o ..\FlappyBird\game.cpp
 
 release/ground.o: ../FlappyBird/ground.cpp ../FlappyBird/ground.h \

@@ -1,4 +1,5 @@
 #include "pipe.h"
+#include "bird.h"
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 #include <QPropertyAnimation>
@@ -22,6 +23,18 @@ Pipe::Pipe() {
 
 }
 
+bool Pipe::detectCollision(){
+
+    QList <QGraphicsItem *> ItemsColliding = Pipes->collidingItems();
+    foreach(QGraphicsItem *Item, ItemsColliding){
+        Bird *birdItem =  dynamic_cast<Bird *>(Item);
+        if(birdItem){
+            return true;
+        }
+
+    }
+    return false;
+}
 
 qreal Pipe::x() const
 {
@@ -31,8 +44,15 @@ qreal Pipe::x() const
 void Pipe::setX(qreal newX)
 {
     m_x = newX;
+    if(detectCollision()){
+        emit BirdCollisionWithPipe();
+    }
     setPos(newX,yPosition);
 
+}
+
+void Pipe::stopPipe(){
+    PipeAnimation->stop();
 }
 
 void Pipe::RemovePipe(){

@@ -14,17 +14,23 @@ public:
     explicit Pipe();
     qreal x() const;
     void setX(qreal newX);
+    void stopPipe();
 
 private:
     bool isPass;
-    bool GameOver;
+    bool isCollide;
+    bool detectCollision();
     int yPosition;
     void RemovePipe();
+    ;
     QGraphicsPixmapItem *Pipes;
     QPropertyAnimation *PipeAnimation;
     qreal m_x;
 
 signals:
+
+    void BirdCollisionWithPipe();
+
 
 public slots:
 };

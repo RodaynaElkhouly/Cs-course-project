@@ -15,13 +15,10 @@ Bird::Bird(QPixmap pixmap) : wing(WingPosition::Up), isWingDir(0), m_y(0)
     BirdAnimation->setEndValue(groundPos);
     BirdAnimation->setEasingCurve(QEasingCurve::InQuad);
     BirdAnimation->setDuration(1000);
-    BirdAnimation->start();
-
 
 
     BirdRotation = new QPropertyAnimation(this, "rotation" ,this);
     rotateTo(90,1200,QEasingCurve::InQuad);
-    BirdRotation->start();
 
 
 }
@@ -53,6 +50,12 @@ void Bird :: updatePixmap(){
         wing = WingPosition::Middle;
     }
 
+}
+void Bird::startFlying(){
+
+
+    BirdAnimation->start();
+    BirdRotation->start();
 }
 void Bird::Jump(){
     BirdAnimation->stop();
@@ -88,6 +91,11 @@ void Bird::makeBirdFall(){
 
 
     }
+
+}
+void Bird::stopFlying(){
+    BirdAnimation->stop();
+    BirdRotation->stop();
 
 }
 qreal Bird::y() const

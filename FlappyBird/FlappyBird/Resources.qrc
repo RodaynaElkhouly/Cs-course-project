@@ -17,4 +17,7 @@
         <file>item1</file>
         <file>item2</file>
     </qresource>
+    <qresource prefix="/resources/PressSpace">
+        <file>klipartz.com.png</file>
+    </qresource>
 </RCC>
