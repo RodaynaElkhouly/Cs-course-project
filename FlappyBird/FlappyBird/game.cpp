@@ -19,18 +19,14 @@ Game::Game(QObject *parent) : QGraphicsScene(parent), Health(3), Score(0) , rema
     BackgroundPic->setPos(QPointF(0,0));
 
     healthDisplay = new QGraphicsTextItem();
-    healthDisplay->setPlainText("Health: " + QString::number(Health));
     healthDisplay->setFont(QFont("Ariel", 16, QFont::Bold));
     healthDisplay->setDefaultTextColor(Qt::black);
-    healthDisplay->setPos( QPointF(450 - healthDisplay->boundingRect().width(),(650 - healthDisplay->boundingRect().height())));
-    addItem(healthDisplay);
+
 
     timerDisplay = new QGraphicsTextItem();
-    timerDisplay->setPlainText(formatTime(remainingTime));
     timerDisplay->setFont(QFont("Ariel", 16, QFont::Bold));
     timerDisplay->setDefaultTextColor(Qt::black);
-    timerDisplay->setPos(QPointF(450 / 2 - timerDisplay->boundingRect().width(), 0));
-    addItem(timerDisplay);
+
 
     spawnBird();
     setUpTimers();
@@ -54,6 +50,15 @@ void Game::startGame(){
 
     isGameOn = 1;
     birdItem->startFlying();
+
+    healthDisplay->setPlainText("Health: " + QString::number(Health));
+    healthDisplay->setPos( QPointF(450 - healthDisplay->boundingRect().width(),(650 - healthDisplay->boundingRect().height())));
+    addItem(healthDisplay);
+
+
+    timerDisplay->setPlainText(formatTime(remainingTime));
+    timerDisplay->setPos(QPointF(450 / 2 - timerDisplay->boundingRect().width(), 0));
+    addItem(timerDisplay);
 
     if(!pipeTimer->isActive()){
         pipeTimer->start(2000);
@@ -88,15 +93,15 @@ void Game::UpdateTime(){
     timerDisplay->setPos(QPointF(450 / 2 - timerDisplay->boundingRect().width(), 0));
 
     if(remainingTime == 0){
-        gameTimer->stop();
-        FreezeScene();
 
+        FreezeScene();
     }
 
 
 }
 
 void Game::FreezeScene(){
+    gameTimer->stop();
     birdItem->stopFlying();
     QList<QGraphicsItem *> ItemsInScene = items();
     foreach(QGraphicsItem *Item, ItemsInScene){
@@ -106,11 +111,27 @@ void Game::FreezeScene(){
         }
 
     }
-
-
-
+    Health--;  // Decrement health each time the scene freezes
+    healthDisplay->setPlainText("Health: " + QString::number(Health));  // Update health display
+    if (Health <= 0) {
+        return;
+    } else {
+        QTimer::singleShot(1000, this, &Game::retryLevel);  // Delay before restart
+    }
 
 }
+
+
+void Game::retryLevel(){
+    cleanPipes();
+    removeItem(timerDisplay);
+    removeItem(healthDisplay);
+    remainingTime = 60;
+    setUpTimers();
+    isGameOn = 0;
+}
+
+
 void Game::keyPressEvent(QKeyEvent *event){
 
     if(isGameOn == 0){
@@ -122,7 +143,22 @@ void Game::keyPressEvent(QKeyEvent *event){
 
     }
 
+}
+void Game::cleanPipes(){
+
+    QList<QGraphicsItem *> ItemsInScene = items();
+    foreach(QGraphicsItem *Item, ItemsInScene){
+        Pipe *pipe = dynamic_cast<Pipe *>(Item);
+        if(pipe){
+            removeItem(pipe);
+            delete pipe;
+        }
+
+    }
 
 
 
 }
+
+
+

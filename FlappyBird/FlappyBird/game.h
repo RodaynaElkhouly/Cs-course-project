@@ -28,10 +28,11 @@ public:
     void UpdateHealth();
     void setScore(int);
     bool getGameOn();
-    void setGameOb(bool);
+    void setGameOn(bool);
     void keyPressEvent(QKeyEvent * event) override;
     void spawnBird();
     void spawnPipe();
+
 
 protected:
     QGraphicsPixmapItem *startImage1;
@@ -55,7 +56,7 @@ protected:
     void setUpTimers();
     bool isItemCollected();
     QString formatTime(int);
-
+    void cleanPipes();
 
 
 
