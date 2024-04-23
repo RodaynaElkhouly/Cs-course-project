@@ -1,58 +1,95 @@
 #include "bird.h"
 #include <QTimer>
-Bird::Bird(QPixmap pixmap) :
-    wingPos(WingPos::Up),
-    WingDir(0)
-
+Bird::Bird(QPixmap pixmap) : wing(WingPosition::Up), isWingDir(0), m_y(0)
 {
-    setPixmap (pixmap);
-    QTimer * wingtimer= new QTimer(this);
-    connect(wingtimer, &QTimer::timeout,[=](){
-        updatePixmap();
-    });
 
-    wingtimer->start(60);
+    setPixmap (pixmap);
+    QTimer * wingTimer= new QTimer(this);
+    connect(wingTimer, &QTimer::timeout, this, &Bird::updatePixmap);
+    wingTimer->start(60);
+
     groundPos = scenePos().y() + 550;
-    yAnimation = new QPropertyAnimation(this,"y",this);
-    yAnimation->setStartValue(scenePos().y());
-    yAnimation->setEndValue(groundPos);
-    yAnimation->setEasingCurve(QEasingCurve::InQuad);
-    yAnimation->setDuration(1000);
-    yAnimation->start();
-    rotationAnimation = new QPropertyAnimation(this,"rotation",this);
+
+    BirdAnimation = new QPropertyAnimation(this,"y",this);
+    BirdAnimation->setStartValue(scenePos().y());
+    BirdAnimation->setEndValue(groundPos);
+    BirdAnimation->setEasingCurve(QEasingCurve::InQuad);
+    BirdAnimation->setDuration(1000);
+    BirdAnimation->start();
+
+
+
+    BirdRotation = new QPropertyAnimation(this, "rotation" ,this);
     rotateTo(90,1200,QEasingCurve::InQuad);
+    BirdRotation->start();
 
 
 }
 void Bird :: rotateTo(const qreal &end, const int &duration, const QEasingCurve &curve){
-    rotationAnimation->setStartValue(rotation());
-    rotationAnimation->setEndValue(end);
-    rotationAnimation->setEasingCurve(curve);
-    rotationAnimation->setDuration(duration);
 
-    rotationAnimation->start();
+    BirdRotation->setStartValue(rotation());
+    BirdRotation->setEndValue(end);
+    BirdRotation->setEasingCurve(curve);
+    BirdRotation->setDuration(duration);
+
+
 }
 void Bird :: updatePixmap(){
 
-    if (wingPos == WingPos::Middle){
+    if (wing == WingPosition::Middle){
 
-        if (WingDir){
+        if (isWingDir){
             setPixmap(QPixmap(":/ressources/bird/up.png"));
-            wingPos=WingPos::Up;
-            WingDir=0;
+            wing = WingPosition::Up;
+            isWingDir = 0;
         }
-     else {
-        setPixmap(QPixmap(":/ressources/bird/down.png"));
-        wingPos=WingPos::Down;
-        WingDir=1;
-    }
+        else {
+            setPixmap(QPixmap(":/ressources/bird/down.png"));
+            wing = WingPosition::Down;
+            isWingDir = 1;
+        }
     }else{
         setPixmap(QPixmap(":/ressources/bird/middle.png"));
-        wingPos=WingPos::Middle;
+        wing = WingPosition::Middle;
     }
 
 }
+void Bird::Jump(){
+    BirdAnimation->stop();
+    BirdRotation->stop();
 
+    qreal yPos = y();
+    BirdAnimation->setStartValue(yPos);
+    BirdAnimation->setEndValue(y() - 50);
+    BirdAnimation->setEasingCurve(QEasingCurve::OutQuad);
+    BirdAnimation->setDuration(250);
+
+    connect(BirdAnimation, &QPropertyAnimation::finished, this,  &Bird::makeBirdFall);
+    BirdAnimation->start();
+
+    rotateTo(-20, 200, QEasingCurve::OutCubic);
+    BirdRotation->start();
+
+
+}
+void Bird::makeBirdFall(){
+    if(y() < groundPos){
+        BirdRotation->stop();
+
+        BirdAnimation->setStartValue(y());
+        BirdAnimation->setEndValue(groundPos);
+        BirdAnimation->setEasingCurve(QEasingCurve::InQuad);
+        BirdAnimation->setDuration(1100);
+        BirdAnimation->start();
+
+        rotateTo(90, 1100, QEasingCurve::InCubic);
+        BirdRotation->start();
+
+
+
+    }
+
+}
 qreal Bird::y() const
 {
     return m_y;
@@ -60,7 +97,7 @@ qreal Bird::y() const
 
 void Bird::setY(qreal newY)
 {
-    moveBy(0,newY-m_y);
+    moveBy(0, (newY - m_y));
     m_y = newY;
 }
 
@@ -79,3 +116,5 @@ void Bird::setRotation(qreal newRotation)
     t.translate(-c.x(), -c.y());
     setTransform(t);
 }
+
+

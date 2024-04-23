@@ -6,6 +6,7 @@ release/mainwindow.o
 release/pipe.o
 release/prize.o
 release/qrc_Resources.o
+release/moc_bird.o
 release/moc_game.o
 release/moc_mainwindow.o
 release/moc_pipe.o

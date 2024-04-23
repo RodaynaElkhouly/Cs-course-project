@@ -11,28 +11,29 @@ class Bird : public QObject , public QGraphicsPixmapItem
     Q_PROPERTY (qreal rotation READ rotation WRITE setRotation)
 
 private:
-    enum WingPos{
+    enum WingPosition{
         Up,
         Middle,
         Down,
     };
     void updatePixmap ();
 
-    WingPos wingPos;
-    bool WingDir ;
+    WingPosition wing;
+    bool isWingDir;
 
     qreal m_y;
     qreal m_rotation;
-    QPropertyAnimation * yAnimation;
-    QPropertyAnimation * rotationAnimation;
+    QPropertyAnimation * BirdAnimation;
+    QPropertyAnimation * BirdRotation;
     qreal groundPos;
 
 public:
     explicit Bird ( QPixmap pixmap);
-
-
     qreal y() const;
     qreal rotation() const;
+    void Jump();
+    void makeBirdFall();
+
 
 
 signals:

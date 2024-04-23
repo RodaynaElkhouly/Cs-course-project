@@ -29,6 +29,7 @@ public:
     bool getGameOn();
     void setGameOb(bool);
     void keyPressEvent(QKeyEvent * event) override;
+    void spawnBird();
 protected:
     QGraphicsPixmapItem *startImage;
     QGraphicsPixmapItem *gameOverImage;
@@ -48,6 +49,7 @@ protected:
     void intialGameState();
     bool isItemCollected();
     void spawnPipe();
+    ;
 
 
 
