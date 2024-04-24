@@ -49,6 +49,7 @@ void Game::spawnBird(){
 void Game::startGame(){
 
     isGameOn = 1;
+    isGameOver = 0;
     birdItem->startFlying();
 
     healthDisplay->setPlainText("Health: " + QString::number(Health));
@@ -101,6 +102,7 @@ void Game::UpdateTime(){
 }
 
 void Game::FreezeScene(){
+
     gameTimer->stop();
     birdItem->stopFlying();
     QList<QGraphicsItem *> ItemsInScene = items();
@@ -111,6 +113,8 @@ void Game::FreezeScene(){
         }
 
     }
+
+    isGameOver = 1;
     Health--;  // Decrement health each time the scene freezes
     healthDisplay->setPlainText("Health: " + QString::number(Health));  // Update health display
     if (Health <= 0) {
@@ -129,6 +133,7 @@ void Game::retryLevel(){
     remainingTime = 60;
     setUpTimers();
     isGameOn = 0;
+
 }
 
 
@@ -138,8 +143,12 @@ void Game::keyPressEvent(QKeyEvent *event){
         startGame();
     }
     if(event->key() == Qt::Key_Space){
+        if(isGameOver == 0){
 
-        birdItem->Jump();
+            birdItem->Jump();
+
+
+        }
 
     }
 

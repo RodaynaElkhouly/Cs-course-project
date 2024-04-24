@@ -1,5 +1,6 @@
 #include "prize.h"
 
-Prize::Prize(QObject *parent)
-    : QObject{parent}
-{}
+Prize::Prize(QObject *parent) : QObject{parent}
+{
+
+}
