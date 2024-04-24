@@ -133,8 +133,7 @@ compiler_rcc_clean:
 release/qrc_Resources.cpp: ../FlappyBird/Resources.qrc \
 		C:/Qt/6.7.0/mingw_64/bin/rcc.exe \
 		../FlappyBird/klipartz.com.png \
-		../FlappyBird/item2 \
-		../FlappyBird/item1 \
+		../FlappyBird/prizeImage-removebg-preview.png \
 		../FlappyBird/ground(1).png \
 		../FlappyBird/pillarr.png \
 		../FlappyBird/Background.jpg \
@@ -458,7 +457,6 @@ release/moc_game.cpp: ../FlappyBird/game.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qeasingcurve.h \
 		../FlappyBird/pipe.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QGraphicsItemGroup \
-		../FlappyBird/ground.h \
 		../FlappyBird/prize.h \
 		release/moc_predefs.h \
 		C:/Qt/6.7.0/mingw_64/bin/moc.exe
@@ -622,7 +620,6 @@ release/moc_mainwindow.cpp: ../FlappyBird/mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qeasingcurve.h \
 		../FlappyBird/pipe.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QGraphicsItemGroup \
-		../FlappyBird/ground.h \
 		../FlappyBird/prize.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qmainwindow.h \
@@ -928,6 +925,50 @@ release/moc_prize.cpp: ../FlappyBird/prize.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qscopeguard.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qobject_impl.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qbindingstorage.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QGraphicsPixmapItem \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qtguiglobal.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qtgui-config.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qtguiexports.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qtwidgets-config.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qtwidgetsexports.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qdebug.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qtextstream.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qshareddata.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qmap.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qshareddata_impl.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qset.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qhash.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/q23utility.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qrect.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qmargins.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qsize.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qpoint.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpainterpath.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qtransform.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpolygon.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qregion.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qwindowdefs.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qline.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpixmap.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpaintdevice.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qcolor.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qrgb.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qrgba64.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qimage.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpixelformat.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPropertyAnimation \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qpropertyanimation.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qvariantanimation.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qabstractanimation.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qeasingcurve.h \
 		release/moc_predefs.h \
 		C:/Qt/6.7.0/mingw_64/bin/moc.exe
 	C:\Qt\6.7.0\mingw_64\bin\moc.exe $(DEFINES) --include "C:/Users/Eldee/OneDrive/AUC/Spring 2024/Comp Sci/Projects/Cs-course-project/FlappyBird/build-FlappyBird-Desktop_Qt_6_7_0_MinGW_64_bit-Debug/release/moc_predefs.h" -IC:/Qt/6.7.0/mingw_64/mkspecs/win32-g++ -I"C:/Users/Eldee/OneDrive/AUC/Spring 2024/Comp Sci/Projects/Cs-course-project/FlappyBird/FlappyBird" -IC:/Qt/6.7.0/mingw_64/include -IC:/Qt/6.7.0/mingw_64/include/QtWidgets -IC:/Qt/6.7.0/mingw_64/include/QtGui -IC:/Qt/6.7.0/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\FlappyBird\prize.h -o release\moc_prize.cpp
@@ -1262,7 +1303,6 @@ release/game.o: ../FlappyBird/game.cpp ../FlappyBird/game.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qeasingcurve.h \
 		../FlappyBird/pipe.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QGraphicsItemGroup \
-		../FlappyBird/ground.h \
 		../FlappyBird/prize.h \
 		C:/Qt/6.7.0/mingw_64/include/QtGui/QKeyEvent \
 		C:/Qt/6.7.0/mingw_64/include/QtGui/qevent.h \
@@ -1565,7 +1605,6 @@ release/main.o: ../FlappyBird/main.cpp ../FlappyBird/mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qeasingcurve.h \
 		../FlappyBird/pipe.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QGraphicsItemGroup \
-		../FlappyBird/ground.h \
 		../FlappyBird/prize.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qmainwindow.h \
@@ -1778,7 +1817,6 @@ release/mainwindow.o: ../FlappyBird/mainwindow.cpp ../FlappyBird/mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qeasingcurve.h \
 		../FlappyBird/pipe.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QGraphicsItemGroup \
-		../FlappyBird/ground.h \
 		../FlappyBird/prize.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qmainwindow.h \
@@ -1840,11 +1878,6 @@ release/mainwindow.o: ../FlappyBird/mainwindow.cpp ../FlappyBird/mainwindow.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qscrollarea.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qframe.h \
-		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QMenuBar \
-		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qmenubar.h \
-		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qmenu.h \
-		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QStatusBar \
-		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qstatusbar.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\FlappyBird\mainwindow.cpp
 
@@ -1994,6 +2027,7 @@ release/pipe.o: ../FlappyBird/pipe.cpp ../FlappyBird/pipe.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qvariantanimation.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qabstractanimation.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qeasingcurve.h \
+		../FlappyBird/bird.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QGraphicsScene \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qgraphicsscene.h \
 		C:/Qt/6.7.0/mingw_64/include/QtGui/qbrush.h \
@@ -2102,7 +2136,51 @@ release/prize.o: ../FlappyBird/prize.cpp ../FlappyBird/prize.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qtaggedpointer.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qscopeguard.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qobject_impl.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/qbindingstorage.h
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qbindingstorage.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QGraphicsPixmapItem \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qtguiglobal.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qtgui-config.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qtguiexports.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qtwidgets-config.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qtwidgetsexports.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qdebug.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qtextstream.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qshareddata.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qmap.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qshareddata_impl.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qset.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qhash.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/q23utility.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qrect.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qmargins.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qsize.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qpoint.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpainterpath.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qtransform.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpolygon.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qregion.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qwindowdefs.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qline.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpixmap.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpaintdevice.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qcolor.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qrgb.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qrgba64.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qimage.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpixelformat.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QPropertyAnimation \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qpropertyanimation.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qvariantanimation.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qabstractanimation.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qeasingcurve.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\prize.o ..\FlappyBird\prize.cpp
 
 release/qrc_Resources.o: release/qrc_Resources.cpp 

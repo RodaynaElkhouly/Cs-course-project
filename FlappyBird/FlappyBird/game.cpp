@@ -2,7 +2,6 @@
 #include "bird.h"
 #include "pipe.h"
 #include "bird.h"
-#include "ground.h"
 
 #include <QObject>
 #include <QGraphicsScene>
@@ -69,6 +68,10 @@ void Game::startGame(){
         gameTimer->start(1000);
     }
 
+    if(!prizeTimer->isActive()){
+        prizeTimer->start(2000);
+    }
+
 }
 
 void Game::setUpTimers(){
@@ -78,8 +81,33 @@ void Game::setUpTimers(){
     gameTimer = new QTimer;
     connect(gameTimer, &QTimer::timeout, this, &Game::UpdateTime);
 
+    prizeTimer = new QTimer;
+    connect(prizeTimer, &QTimer::timeout, this, &Game::spawnPrizes);
+
 }
 
+void Game::spawnPrizes(){
+
+    prizes = new Prize;
+    bool tooClose = false;
+    foreach (QGraphicsItem* item, items()) {
+        Pipe* pipe = dynamic_cast<Pipe*>(item);
+        if (pipe && qAbs(pipe->pos().y() - prizes->y()) < 100) {
+            tooClose = true;
+            break;  // If too close, break out of the loop
+        }
+    }
+
+    if (tooClose) {
+        removeItem(prizes);
+        delete prizes;  // Remove and delete the prize if it's too close
+    } else {
+           addItem(prizes);
+    }
+
+
+
+}
 void Game::spawnPipe(){
     pipeItem = new Pipe;
     connect(pipeItem, &Pipe::BirdCollisionWithPipe, [=](){
@@ -103,6 +131,7 @@ void Game::UpdateTime(){
 
 void Game::FreezeScene(){
 
+    prizeTimer->stop();
     gameTimer->stop();
     birdItem->stopFlying();
     QList<QGraphicsItem *> ItemsInScene = items();
@@ -113,20 +142,31 @@ void Game::FreezeScene(){
         }
 
     }
+    foreach(QGraphicsItem *Item, ItemsInScene){
+        Prize *prize = dynamic_cast<Prize *>(Item);
+        if(prize){
+            prize->stopPrize();
+        }
+
+    }
 
     isGameOver = 1;
-    Health--;  // Decrement health each time the scene freezes
-    healthDisplay->setPlainText("Health: " + QString::number(Health));  // Update health display
-    if (Health <= 0) {
+    Health--;
+    healthDisplay->setPlainText("Health: " + QString::number(Health));
+
+    if(Health <= 0){
         return;
-    } else {
-        QTimer::singleShot(1000, this, &Game::retryLevel);  // Delay before restart
+    }
+    else{
+
+        QTimer::singleShot(1000, this, &Game::retryLevel);
     }
 
 }
 
 
 void Game::retryLevel(){
+    cleanPrizes();
     cleanPipes();
     removeItem(timerDisplay);
     removeItem(healthDisplay);
@@ -146,8 +186,6 @@ void Game::keyPressEvent(QKeyEvent *event){
         if(isGameOver == 0){
 
             birdItem->Jump();
-
-
         }
 
     }
@@ -166,8 +204,21 @@ void Game::cleanPipes(){
     }
 
 
-
 }
 
+void Game::cleanPrizes(){
+
+    QList<QGraphicsItem *> ItemsInScene = items();
+    foreach(QGraphicsItem *Item, ItemsInScene){
+        Prize *prizes = dynamic_cast<Prize *>(Item);
+        if(prizes){
+            removeItem(prizes);
+            delete prizes;
+        }
+
+    }
+
+
+}
 
 

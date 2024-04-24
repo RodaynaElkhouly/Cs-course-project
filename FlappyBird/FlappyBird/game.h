@@ -7,7 +7,6 @@
 #include <QObject>
 #include "bird.h"
 #include "pipe.h"
-#include "ground.h"
 #include "prize.h"
 
 #include <QObject>
@@ -31,6 +30,7 @@ public:
     void setGameOn(bool);
     void keyPressEvent(QKeyEvent * event) override;
     void spawnBird();
+    void spawnPrizes();
     void spawnPipe();
 
 
@@ -57,6 +57,7 @@ protected:
     bool isItemCollected();
     QString formatTime(int);
     void cleanPipes();
+    void cleanPrizes();
 
 
 
