@@ -106,16 +106,54 @@ void Game::UpdateScore() {
 void Game::spawnPrizes(){
 
     prizes = new Prize;
+    connect(prizes, &Prize::ItemCollected, this, &Game::handleItemCollected);
     addItem(prizes);
 
+
+
 }
+
+void Game::handleItemCollected(){
+    itemsToCollect--;
+
+    itemDisplay->setPlainText("Crowns: " + QString::number(itemsToCollect));
+    itemDisplay->setPos(QPointF(0, 650 - timerDisplay->boundingRect().height()));
+    if(itemsToCollect == 0){
+
+        prizeTimer->stop();
+        gameTimer->stop();
+        birdItem->stopFlying();
+        pipeTimer->stop();
+        QList<QGraphicsItem *> ItemsInScene = items();
+        foreach(QGraphicsItem *Item, ItemsInScene){
+            Pipe *pipe = dynamic_cast<Pipe *>(Item);
+            if(pipe){
+                pipe->stopPipe();
+            }
+
+        }
+        foreach(QGraphicsItem *Item, ItemsInScene){
+            Prize *prize = dynamic_cast<Prize *>(Item);
+            if(prize){
+                prize->stopPrize();
+            }
+
+        }
+    }
+
+
+}
+
 void Game::spawnPipe(){
     pipeItem = new Pipe;
-    connect(pipeItem, &Pipe::BirdCollisionWithPipe, [=](){
-        pipeTimer->stop();
-        FreezeScene();
-    });
+    connect(pipeItem, &Pipe::BirdCollisionWithPipe, this , &Game::handlePipeCollision);
     addItem(pipeItem);
+}
+
+void Game::handlePipeCollision(){
+
+    pipeTimer->stop();
+    FreezeScene();
 }
 void Game::UpdateTime(){
     remainingTime--;

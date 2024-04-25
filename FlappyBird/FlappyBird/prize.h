@@ -14,7 +14,7 @@ public:
     qreal x() const;
     void setX(qreal newX);
     void stopPrize();
-    bool detectCollision();
+    void detectCollision();
     QGraphicsPixmapItem *Crown ;
 
 private:

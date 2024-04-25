@@ -32,6 +32,8 @@ public:
     void spawnBird();
     void spawnPrizes();
     void spawnPipe();
+    void handlePipeCollision();
+    void handleItemCollected();
 
 
 protected:

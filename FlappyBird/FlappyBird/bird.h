@@ -35,7 +35,7 @@ public:
     void makeBirdFall();
     void startFlying();
     void stopFlying();
-    void detectCollision();
+    void Collision();
 
 
 

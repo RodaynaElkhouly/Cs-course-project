@@ -129,3 +129,8 @@ void Bird::setRotation(qreal newRotation)
 }
 
 
+
+
+
+
+

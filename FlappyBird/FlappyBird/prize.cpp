@@ -24,21 +24,27 @@ Prize::Prize(QObject *parent) : QObject(parent) {
 
 
 }
-bool Prize::detectCollision(){
-    QList <QGraphicsItem *> ItemsColliding = Crown->collidingItems();
-    foreach(QGraphicsItem *Item, ItemsColliding){
-        Bird *birdItem =  dynamic_cast<Bird *>(Item);
-        if(birdItem){
-            return true;
-        }
-    }
-    return false;
+void Prize::detectCollision(){
 
+
+    QList<QGraphicsItem *> CollidingItems = Crown->collidingItems();
+    for(int i = 0; i < CollidingItems.size(); i++){
+        if(typeid(*(CollidingItems[i])) == typeid(Bird)){
+            emit ItemCollected();
+            scene()->removeItem(this);
+            delete this;
+
+        }
+
+    }
 
 
 
 
 }
+
+
+
 void Prize::stopPrize(){
     crownAnimation->stop();
 }
@@ -50,5 +56,6 @@ qreal Prize::x() const{
 void Prize::setX(qreal newX){
 
     m_x = newX;
+    detectCollision();
     setPos(newX, yPos);
 }
