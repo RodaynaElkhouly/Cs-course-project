@@ -19,8 +19,8 @@ public:
     Game(QObject *parent = nullptr);
     void startGame();
     void retryLevel();
-    void displayYouWonPanel();
-    void displayGameOverPanel();
+    void displayYouWon();
+    void displayGameOver();
     void FreezeScene();
     void UpdateScore();
     void UpdateTime();
@@ -37,8 +37,7 @@ public:
 
 
 protected:
-    QGraphicsPixmapItem *startImage1;
-    QGraphicsPixmapItem *startImage2;
+    QGraphicsPixmapItem *startImage;
     QGraphicsPixmapItem *gameOverImage;
     QGraphicsPixmapItem *BackgroundPic;
     QGraphicsTextItem *scoreText;

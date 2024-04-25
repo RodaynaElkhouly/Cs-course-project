@@ -134,6 +134,7 @@ release/qrc_Resources.cpp: ../FlappyBird/Resources.qrc \
 		C:/Qt/6.7.0/mingw_64/bin/rcc.exe \
 		../FlappyBird/klipartz.com.png \
 		../FlappyBird/prizeImage-removebg-preview.png \
+		../FlappyBird/YouwONpng \
 		../FlappyBird/ground(1).png \
 		../FlappyBird/pillarr.png \
 		../FlappyBird/Background.jpg \
@@ -1141,9 +1142,16 @@ release/bird.o: ../FlappyBird/bird.cpp ../FlappyBird/bird.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qvariantanimation.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qabstractanimation.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qeasingcurve.h \
+		../FlappyBird/prize.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/QTimer \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qtimer.h \
-		C:/Qt/6.7.0/mingw_64/include/QtCore/qbasictimer.h
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qbasictimer.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QGraphicsScene \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qgraphicsscene.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qbrush.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qfont.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qendian.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\bird.o ..\FlappyBird\bird.cpp
 
 release/game.o: ../FlappyBird/game.cpp ../FlappyBird/game.h \
@@ -2033,7 +2041,12 @@ release/pipe.o: ../FlappyBird/pipe.cpp ../FlappyBird/pipe.h \
 		C:/Qt/6.7.0/mingw_64/include/QtGui/qbrush.h \
 		C:/Qt/6.7.0/mingw_64/include/QtGui/qfont.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qendian.h \
-		C:/Qt/6.7.0/mingw_64/include/QtGui/qpen.h
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpen.h \
+		../FlappyBird/game.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QTimer \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qtimer.h \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/qbasictimer.h \
+		../FlappyBird/prize.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\pipe.o ..\FlappyBird\pipe.cpp
 
 release/prize.o: ../FlappyBird/prize.cpp ../FlappyBird/prize.h \
