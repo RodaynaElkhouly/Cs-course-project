@@ -3,6 +3,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 #include <QPropertyAnimation>
+#include "game.h"
 
 Pipe::Pipe() {
     Pipes = new QGraphicsPixmapItem(QPixmap(":/ressources/pipe/pillarr.png"));
@@ -47,6 +48,14 @@ void Pipe::setX(qreal newX)
         emit BirdCollisionWithPipe();
     }
     setPos(newX,yPosition);
+
+    if (newX < 0 && !isPass){
+        isPass = 1;
+        QGraphicsScene * currentScene = scene();
+        Game * myGame = dynamic_cast < Game * > (currentScene);
+        myGame -> UpdateScore();
+
+    }
 
 }
 

@@ -675,6 +675,8 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_Resources.cpp
 qrc_Resources.cpp: ../FlappyBird/Resources.qrc \
 		../../../../Qt/6.6.2/macos/libexec/rcc \
+		../FlappyBird/klipartz.com.png \
+		../FlappyBird/prizeImage-removebg-preview.png \
 		../FlappyBird/ground(1).png \
 		../FlappyBird/pillarr.png \
 		../FlappyBird/Background.jpg \
@@ -710,7 +712,6 @@ moc_game.cpp: ../FlappyBird/game.h \
 		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../FlappyBird/pipe.h \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsItemGroup \
-		../FlappyBird/ground.h \
 		../FlappyBird/prize.h \
 		../../../../Qt/6.6.2/macos/libexec/moc
 	/Users/rodaynaelkhouly/Qt/6.6.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rodaynaelkhouly/Qt/6.6.2/macos/mkspecs/macx-clang -I/Users/rodaynaelkhouly/Desktop/Cs-course-project/FlappyBird/FlappyBird -I/Users/rodaynaelkhouly/Qt/6.6.2/macos/lib/QtWidgets.framework/Headers -I/Users/rodaynaelkhouly/Qt/6.6.2/macos/lib/QtGui.framework/Headers -I/Users/rodaynaelkhouly/Qt/6.6.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rodaynaelkhouly/Qt/6.6.2/macos/lib ../FlappyBird/game.h -o moc_game.cpp
@@ -730,7 +731,6 @@ moc_mainwindow.cpp: ../FlappyBird/mainwindow.h \
 		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../FlappyBird/pipe.h \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsItemGroup \
-		../FlappyBird/ground.h \
 		../FlappyBird/prize.h \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
@@ -751,6 +751,10 @@ moc_pipe.cpp: ../FlappyBird/pipe.h \
 moc_prize.cpp: ../FlappyBird/prize.h \
 		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/QObject \
 		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../../../../Qt/6.6.2/macos/libexec/moc
 	/Users/rodaynaelkhouly/Qt/6.6.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/rodaynaelkhouly/Qt/6.6.2/macos/mkspecs/macx-clang -I/Users/rodaynaelkhouly/Desktop/Cs-course-project/FlappyBird/FlappyBird -I/Users/rodaynaelkhouly/Qt/6.6.2/macos/lib/QtWidgets.framework/Headers -I/Users/rodaynaelkhouly/Qt/6.6.2/macos/lib/QtGui.framework/Headers -I/Users/rodaynaelkhouly/Qt/6.6.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/rodaynaelkhouly/Qt/6.6.2/macos/lib ../FlappyBird/prize.h -o moc_prize.cpp
 
@@ -784,8 +788,11 @@ bird.o: ../FlappyBird/bird.cpp ../FlappyBird/bird.h \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
 		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
 		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		../FlappyBird/prize.h \
 		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/QTimer \
-		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qtimer.h
+		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qtimer.h \
+		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/qgraphicsscene.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bird.o ../FlappyBird/bird.cpp
 
 game.o: ../FlappyBird/game.cpp ../FlappyBird/game.h \
@@ -802,8 +809,9 @@ game.o: ../FlappyBird/game.cpp ../FlappyBird/game.h \
 		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../FlappyBird/pipe.h \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsItemGroup \
-		../FlappyBird/ground.h \
-		../FlappyBird/prize.h
+		../FlappyBird/prize.h \
+		../../../../Qt/6.6.2/macos/lib/QtGui.framework/Headers/QKeyEvent \
+		../../../../Qt/6.6.2/macos/lib/QtGui.framework/Headers/qevent.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o game.o ../FlappyBird/game.cpp
 
 ground.o: ../FlappyBird/ground.cpp ../FlappyBird/ground.h \
@@ -826,7 +834,6 @@ main.o: ../FlappyBird/main.cpp ../FlappyBird/mainwindow.h \
 		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../FlappyBird/pipe.h \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsItemGroup \
-		../FlappyBird/ground.h \
 		../FlappyBird/prize.h \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
@@ -849,7 +856,6 @@ mainwindow.o: ../FlappyBird/mainwindow.cpp ../FlappyBird/mainwindow.h \
 		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../FlappyBird/pipe.h \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsItemGroup \
-		../FlappyBird/ground.h \
 		../FlappyBird/prize.h \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
@@ -864,13 +870,25 @@ pipe.o: ../FlappyBird/pipe.cpp ../FlappyBird/pipe.h \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
 		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
 		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		../FlappyBird/bird.h \
 		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsScene \
-		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/qgraphicsscene.h
+		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		../FlappyBird/game.h \
+		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/QTimer \
+		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qtimer.h \
+		../FlappyBird/prize.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pipe.o ../FlappyBird/pipe.cpp
 
 prize.o: ../FlappyBird/prize.cpp ../FlappyBird/prize.h \
 		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/QObject \
-		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h
+		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		../../../../Qt/6.6.2/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		../FlappyBird/bird.h \
+		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		../../../../Qt/6.6.2/macos/lib/QtWidgets.framework/Headers/qgraphicsscene.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o prize.o ../FlappyBird/prize.cpp
 
 qrc_Resources.o: qrc_Resources.cpp 

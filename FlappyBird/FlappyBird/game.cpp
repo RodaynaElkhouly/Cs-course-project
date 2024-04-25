@@ -10,7 +10,8 @@
 #include <QTimer>
 
 
-Game::Game(QObject *parent) : QGraphicsScene(parent), Health(3), Score(0) , remainingTime(60) , itemsToCollect(3){
+Game::Game(QObject *parent) : QGraphicsScene(parent), Health(3), Score(0) , remainingTime(60) , itemsToCollect(3) ,
+    BestScore(0){
 
     setSceneRect(0, 0, 450, 650);
     BackgroundPic = new QGraphicsPixmapItem(QPixmap(":/ressources/backgroundimage/Background.jpg"));
@@ -94,6 +95,12 @@ void Game::setUpTimers(){
     prizeTimer = new QTimer;
     connect(prizeTimer, &QTimer::timeout, this, &Game::spawnPrizes);
 
+}
+
+void Game::UpdateScore() {
+    Score++;
+    if (Score > BestScore )
+        BestScore = Score;
 }
 
 void Game::spawnPrizes(){

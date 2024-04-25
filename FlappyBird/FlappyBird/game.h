@@ -53,6 +53,7 @@ protected:
     int Health;
     int remainingTime;
     int itemsToCollect;
+    int BestScore;
     bool isGameOn = 0;
     bool isGameOver;
     void setUpTimers();
