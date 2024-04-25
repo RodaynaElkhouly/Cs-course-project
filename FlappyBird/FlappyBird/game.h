@@ -34,6 +34,8 @@ public:
     void spawnPipe();
     void handlePipeCollision();
     void handleItemCollected();
+    void safelyDeleteDisplay(QGraphicsTextItem* display);
+    void restartGame();
 
 
 protected:
@@ -45,9 +47,7 @@ protected:
     QGraphicsTextItem *healthDisplay;
     QGraphicsTextItem *timerDisplay;
     QGraphicsTextItem *itemDisplay;
-    Bird *birdItem;
-    Pipe *pipeItem;
-    Prize *prizes;
+    Bird * birdItem;
     QTimer *gameTimer;
     QTimer *pipeTimer;
     QTimer *prizeTimer;
@@ -63,6 +63,7 @@ protected:
     QString formatTime(int);
     void cleanPipes();
     void cleanPrizes();
+    bool restart = false;
 
 
 

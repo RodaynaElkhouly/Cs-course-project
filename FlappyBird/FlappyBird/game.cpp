@@ -13,7 +13,6 @@
 Game::Game(QObject *parent) : QGraphicsScene(parent), Health(3), Score(0) , remainingTime(60) , itemsToCollect(3) ,
     BestScore(0){
 
-
     setSceneRect(0, 0, 450, 650); //Intializing Scene and setting width and height
 
     //Intializing background Image
@@ -41,8 +40,8 @@ Game::Game(QObject *parent) : QGraphicsScene(parent), Health(3), Score(0) , rema
     itemDisplay->setFont(QFont("Times new Roman", 16, QFont::Bold));
     itemDisplay->setDefaultTextColor(Qt::black);
 
-    spawnBird(); //Adding the bird item to the scene
-    setUpTimers(); //setting up timers
+    spawnBird();
+    setUpTimers();
 
 }
 
@@ -58,7 +57,7 @@ QString Game::formatTime(int seconds){
 void Game::spawnBird(){
 
     birdItem = new Bird(QPixmap(":/ressources/bird/up.png"));
-    addItem(birdItem);
+    this->addItem(birdItem);
 
 }
 
@@ -66,11 +65,11 @@ void Game::spawnBird(){
 //A function that starts the game when the space bar is pressed
 void Game::startGame(){
 
-    isGameOn = 1;
+    isGameOn = true;
     isGameOver = 0;
-
     //Removing the start image as soon as the game starts
     removeItem(startImage);
+
     delete(startImage);
 
     //Starting the animation of the bird
@@ -79,19 +78,19 @@ void Game::startGame(){
     //Displaying health once the game starts
     healthDisplay->setPlainText("Health: " + QString::number(Health));
     healthDisplay->setPos( QPointF(450 - healthDisplay->boundingRect().width(),(650 - healthDisplay->boundingRect().height())));
-    addItem(healthDisplay);
+    this->addItem(healthDisplay);
 
 
     //Displaying timer once the game starts
     timerDisplay->setPlainText(formatTime(remainingTime));
     timerDisplay->setPos(QPointF(450 / 2 - timerDisplay->boundingRect().width(), 0));
-    addItem(timerDisplay);
+    this->addItem(timerDisplay);
 
 
     //Displaying health once the game starts
     itemDisplay->setPlainText("Crowns: " + QString::number(itemsToCollect));
     itemDisplay->setPos(QPointF(0, 650 - timerDisplay->boundingRect().height()));
-    addItem(itemDisplay);
+    this->addItem(itemDisplay);
 
 
     //Checking if the timers are not active, if they're not activing them to start
@@ -106,6 +105,34 @@ void Game::startGame(){
     if(!prizeTimer->isActive()){
         prizeTimer->start(2000);
     }
+
+
+}
+
+void Game::restartGame(){
+
+    healthDisplay->setPlainText("Health: " + QString::number(Health));
+    healthDisplay->setPos( QPointF(450 - healthDisplay->boundingRect().width(),(650 - healthDisplay->boundingRect().height())));
+
+    timerDisplay->setPlainText(formatTime(remainingTime));
+    timerDisplay->setPos(QPointF(450 / 2 - timerDisplay->boundingRect().width(), 0));
+
+    itemDisplay->setPlainText("Crowns: " + QString::number(itemsToCollect));
+    itemDisplay->setPos(QPointF(0, 650 - timerDisplay->boundingRect().height()));
+
+     birdItem->startFlying();
+    if(!pipeTimer->isActive()){
+        pipeTimer->start(2000);
+    }
+
+    if(!gameTimer->isActive()){
+        gameTimer->start(1000);
+    }
+
+    if(!prizeTimer->isActive()){
+        prizeTimer->start(2000);
+    }
+
 
 }
 
@@ -138,16 +165,19 @@ void Game::UpdateScore() {
     }
 
 }
-
+//function to connect the collision between the bird and the pipe
+void Game::spawnPipe(){
+    Pipe * pipeItem = new Pipe;
+    connect(pipeItem, &Pipe::BirdCollisionWithPipe, this , &Game::handlePipeCollision);
+    this->addItem(pipeItem);
+}
 
 //A function that adds the prizes to the scene
 void Game::spawnPrizes(){
 
-    prizes = new Prize;
+    Prize * prizes = new Prize;
     connect(prizes, &Prize::ItemCollected, this, &Game::handleItemCollected); //Connecting the signal of ItemCollected to the function to handle the logic of collection
-    addItem(prizes);
-
-
+    this->addItem(prizes);
 
 }
 
@@ -191,12 +221,7 @@ void Game::handleItemCollected(){
 
 
 }
- //function to connect the collision between the bird and the pipe
-void Game::spawnPipe(){
-    pipeItem = new Pipe;
-    connect(pipeItem, &Pipe::BirdCollisionWithPipe, this , &Game::handlePipeCollision);
-    addItem(pipeItem);
-}
+
 // function tht connects the collision with the timer(stops) and the scene ( freezes)
 void Game::handlePipeCollision(){
     pipeTimer->stop();
@@ -245,8 +270,7 @@ void Game::FreezeScene(){
 //checking if health is 0, the player loses
     if(Health <= 0){
         displayGameOver();
-    }
-    else{
+    }else{
         //else, the level restarts
         QTimer::singleShot(1000, this, &Game::retryLevel);
     }
@@ -257,27 +281,34 @@ void Game::FreezeScene(){
 //restarts the timer sets to 1 min and the game is on
 void Game::retryLevel(){
 
+        cleanPrizes();
+        cleanPipes();
 
-    cleanPrizes();
-    cleanPipes();
 
-    removeItem(timerDisplay);
-    removeItem(healthDisplay);
 
-    Score = 0;
-    remainingTime = 60;
 
-    setUpTimers();
-    isGameOn = 0;
+        Score = 0;
+        remainingTime = 60;
+        restart = true;
+        isGameOver = 0;
+
 
 }
+
+
+
 
 //function that handles the key press bar event
 void Game::keyPressEvent(QKeyEvent *event){
 // if the game is not on yet, pressing the space bar to start the game
-    if(isGameOn == 0){
+    if(isGameOn == false){
         startGame();
     }
+    if(restart == true){
+
+        restartGame();
+    }
+
 // if it's on it will check if the player didn't lose yet, then the space bar will make the bird jump
     if(event->key() == Qt::Key_Space){
         if(isGameOver == 0){
@@ -312,7 +343,9 @@ void Game::cleanPrizes(){
     foreach(QGraphicsItem *Item, ItemsInScene){
         Prize *prizes = dynamic_cast<Prize *>(Item);
         if(prizes){
-            removeItem(prizes);
+
+            this->removeItem(prizes);
+
             delete prizes;
         }
 
@@ -359,3 +392,4 @@ void Game::displayGameOver(){
 
 
 }
+
