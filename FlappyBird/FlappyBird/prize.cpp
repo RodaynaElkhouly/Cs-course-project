@@ -12,7 +12,6 @@ Prize::Prize(QObject *parent) : QObject(parent) {
     setPos(400,yPos);
 
 
-
     crownAnimation = new QPropertyAnimation(this, "x" , this);
     crownAnimation->setStartValue(400);
     crownAnimation->setEndValue(-50);
