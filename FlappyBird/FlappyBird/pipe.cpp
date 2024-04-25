@@ -31,7 +31,6 @@ bool Pipe::detectCollision(){
         if(birdItem){
             return true;
         }
-
     }
     return false;
 }

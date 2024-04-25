@@ -1,9 +1,12 @@
 #include "bird.h"
+#include "prize.h"
 #include <QTimer>
+#include <QGraphicsScene>
 Bird::Bird(QPixmap pixmap) : wing(WingPosition::Up), isWingDir(0), m_y(0)
 {
 
     setPixmap (pixmap);
+
     QTimer * wingTimer= new QTimer(this);
     connect(wingTimer, &QTimer::timeout, this, &Bird::updatePixmap);
     wingTimer->start(60);

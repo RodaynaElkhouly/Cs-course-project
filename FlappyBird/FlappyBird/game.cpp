@@ -89,23 +89,7 @@ void Game::setUpTimers(){
 void Game::spawnPrizes(){
 
     prizes = new Prize;
-    bool tooClose = false;
-    foreach (QGraphicsItem* item, items()) {
-        Pipe* pipe = dynamic_cast<Pipe*>(item);
-        if (pipe && qAbs(pipe->pos().y() - prizes->y()) < 100) {
-            tooClose = true;
-            break;  // If too close, break out of the loop
-        }
-    }
-
-    if (tooClose) {
-        removeItem(prizes);
-        delete prizes;  // Remove and delete the prize if it's too close
-    } else {
-           addItem(prizes);
-    }
-
-
+    addItem(prizes);
 
 }
 void Game::spawnPipe(){
@@ -186,6 +170,7 @@ void Game::keyPressEvent(QKeyEvent *event){
         if(isGameOver == 0){
 
             birdItem->Jump();
+
         }
 
     }
