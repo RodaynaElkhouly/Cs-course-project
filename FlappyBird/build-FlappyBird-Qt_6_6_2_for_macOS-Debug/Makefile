@@ -677,6 +677,7 @@ qrc_Resources.cpp: ../FlappyBird/Resources.qrc \
 		../../../../Qt/6.6.2/macos/libexec/rcc \
 		../FlappyBird/klipartz.com.png \
 		../FlappyBird/prizeImage-removebg-preview.png \
+		../FlappyBird/YouwONpng \
 		../FlappyBird/ground(1).png \
 		../FlappyBird/pillarr.png \
 		../FlappyBird/Background.jpg \
