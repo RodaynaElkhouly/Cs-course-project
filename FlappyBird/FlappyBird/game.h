@@ -42,6 +42,7 @@ protected:
     QGraphicsTextItem *scoreText;
     QGraphicsTextItem *healthDisplay;
     QGraphicsTextItem *timerDisplay;
+    QGraphicsTextItem *itemDisplay;
     Bird *birdItem;
     Pipe *pipeItem;
     Prize *prizes;
@@ -51,6 +52,7 @@ protected:
     int Score;
     int Health;
     int remainingTime;
+    int itemsToCollect;
     bool isGameOn = 0;
     bool isGameOver;
     void setUpTimers();

@@ -6,10 +6,12 @@
 
 Prize::Prize(QObject *parent) : QObject(parent) {
 
-    pixmapItem = new QGraphicsPixmapItem(QPixmap(":/resources/prizeImage/prizeImage-removebg-preview.png"), this);
-    pixmapItem->setPos(-pixmapItem->boundingRect().width()/2, -pixmapItem->boundingRect().height()/2); // Center the pixmap
+    Crown = new QGraphicsPixmapItem(QPixmap(":/resources/prizeImage/prizeImage-removebg-preview.png"), this);
+    Crown->setPos(-Crown->boundingRect().width() / 2 , -Crown->boundingRect().height() /2);
+    yPos = rand() % (550 - 100) + 100;
+    setPos(400,yPos);
 
-    setPos(400, rand() % (550 - 100 + 1) + 100);
+
 
     crownAnimation = new QPropertyAnimation(this, "x" , this);
     crownAnimation->setStartValue(400);
@@ -23,7 +25,7 @@ Prize::Prize(QObject *parent) : QObject(parent) {
 
 }
 bool Prize::detectCollision(){
-    QList <QGraphicsItem *> ItemsColliding = pixmapItem->collidingItems();
+    QList <QGraphicsItem *> ItemsColliding = Crown->collidingItems();
     foreach(QGraphicsItem *Item, ItemsColliding){
         Bird *birdItem =  dynamic_cast<Bird *>(Item);
         if(birdItem){

@@ -10,7 +10,7 @@
 #include <QTimer>
 
 
-Game::Game(QObject *parent) : QGraphicsScene(parent), Health(3), Score(0) , remainingTime(60){
+Game::Game(QObject *parent) : QGraphicsScene(parent), Health(3), Score(0) , remainingTime(60) , itemsToCollect(3){
 
     setSceneRect(0, 0, 450, 650);
     BackgroundPic = new QGraphicsPixmapItem(QPixmap(":/ressources/backgroundimage/Background.jpg"));
@@ -26,6 +26,9 @@ Game::Game(QObject *parent) : QGraphicsScene(parent), Health(3), Score(0) , rema
     timerDisplay->setFont(QFont("Ariel", 16, QFont::Bold));
     timerDisplay->setDefaultTextColor(Qt::black);
 
+    itemDisplay = new QGraphicsTextItem();
+    itemDisplay->setFont(QFont("Ariel", 16, QFont::Bold));
+    itemDisplay->setDefaultTextColor(Qt::black);
 
     spawnBird();
     setUpTimers();
@@ -59,6 +62,13 @@ void Game::startGame(){
     timerDisplay->setPlainText(formatTime(remainingTime));
     timerDisplay->setPos(QPointF(450 / 2 - timerDisplay->boundingRect().width(), 0));
     addItem(timerDisplay);
+
+
+    itemDisplay->setPlainText("Crowns: " + QString::number(itemsToCollect));
+    itemDisplay->setPos(QPointF(0, 650 - timerDisplay->boundingRect().height()));
+    addItem(itemDisplay);
+
+
 
     if(!pipeTimer->isActive()){
         pipeTimer->start(2000);

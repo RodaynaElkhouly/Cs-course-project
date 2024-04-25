@@ -15,7 +15,7 @@ public:
     void setX(qreal newX);
     void stopPrize();
     bool detectCollision();
-    QGraphicsPixmapItem *pixmapItem ;
+    QGraphicsPixmapItem *Crown ;
 
 private:
 
