@@ -5,6 +5,7 @@
 #include <QPropertyAnimation>
 #include "game.h"
 
+//Constructor
 Pipe::Pipe() {
     Pipes = new QGraphicsPixmapItem(QPixmap(":/ressources/pipe/pillarr.png"));
     isPass = 0;
@@ -24,6 +25,8 @@ Pipe::Pipe() {
 
 }
 
+// A boolean function that returns true whenever the bird collides with the pipe
+
 bool Pipe::detectCollision(){
 
     QList <QGraphicsItem *> ItemsColliding = Pipes->collidingItems();
@@ -41,6 +44,7 @@ qreal Pipe::x() const
     return m_x;
 }
 
+//Everytime the x position updates, it will be set and we will detect collision
 void Pipe::setX(qreal newX)
 {
     m_x = newX;
@@ -49,6 +53,7 @@ void Pipe::setX(qreal newX)
     }
     setPos(newX,yPosition);
 
+    //Checks if the bird passed the pipe to increment the score
     if (newX < 0 && !isPass){
         isPass = 1;
         QGraphicsScene * currentScene = scene();
@@ -59,10 +64,14 @@ void Pipe::setX(qreal newX)
 
 }
 
+
+//Function that stops the pipe animation
 void Pipe::stopPipe(){
     PipeAnimation->stop();
 }
 
+
+//Function that removes the pipe from the scene
 void Pipe::RemovePipe(){
     scene()->removeItem(this);
     delete this;

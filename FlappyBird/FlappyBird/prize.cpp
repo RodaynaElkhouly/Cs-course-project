@@ -4,6 +4,8 @@
 #include <QPropertyAnimation>
 #include <QGraphicsScene>
 
+
+//Constructor
 Prize::Prize(QObject *parent) : QObject(parent) {
 
     Crown = new QGraphicsPixmapItem(QPixmap(":/resources/prizeImage/prizeImage-removebg-preview.png"), this);
@@ -23,6 +25,8 @@ Prize::Prize(QObject *parent) : QObject(parent) {
 
 
 }
+
+//A function that detects whether the bird collides with the crown to remove it from the scene and send a signal to handle the collision
 void Prize::detectCollision(){
 
 
@@ -44,6 +48,7 @@ void Prize::detectCollision(){
 
 
 
+//Function that stops the animaton of the prive
 void Prize::stopPrize(){
     crownAnimation->stop();
 }
@@ -51,6 +56,8 @@ void Prize::stopPrize(){
 qreal Prize::x() const{
     return m_x;
 }
+
+//Everytime the x position updates, we will detect collison
 
 void Prize::setX(qreal newX){
 

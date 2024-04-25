@@ -1,6 +1,5 @@
 debug/bird.o
 debug/game.o
-debug/ground.o
 debug/main.o
 debug/mainwindow.o
 debug/pipe.o

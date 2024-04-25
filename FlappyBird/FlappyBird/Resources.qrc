@@ -22,4 +22,10 @@
     <qresource prefix="/resources/youWon">
         <file>YouwONpng</file>
     </qresource>
+    <qresource prefix="/resources/GameOver">
+        <file>gameover.png</file>
+    </qresource>
+    <qresource prefix="/resources/startimage">
+        <file>Overlay.png</file>
+    </qresource>
 </RCC>

@@ -2,6 +2,7 @@
 #include "prize.h"
 #include <QTimer>
 #include <QGraphicsScene>
+//construstor
 Bird::Bird(QPixmap pixmap) : wing(WingPosition::Up), isWingDir(0), m_y(0)
 {
 
@@ -25,6 +26,7 @@ Bird::Bird(QPixmap pixmap) : wing(WingPosition::Up), isWingDir(0), m_y(0)
 
 
 }
+//function that controls the bird rotation
 void Bird :: rotateTo(const qreal &end, const int &duration, const QEasingCurve &curve){
 
     BirdRotation->setStartValue(rotation());
@@ -34,6 +36,7 @@ void Bird :: rotateTo(const qreal &end, const int &duration, const QEasingCurve 
 
 
 }
+//function that updates the bird wings positions
 void Bird :: updatePixmap(){
 
     if (wing == WingPosition::Middle){
@@ -54,12 +57,14 @@ void Bird :: updatePixmap(){
     }
 
 }
+//function that starts the animation of the bird
 void Bird::startFlying(){
-
 
     BirdAnimation->start();
     BirdRotation->start();
 }
+
+//function that handles the animation of the bird jumping once the space bar key is pressed
 void Bird::Jump(){
     BirdAnimation->stop();
     BirdRotation->stop();
@@ -78,6 +83,8 @@ void Bird::Jump(){
 
 
 }
+
+//function that makes the bird falls so it doesn't keep going upwards
 void Bird::makeBirdFall(){
     if(y() < groundPos){
         BirdRotation->stop();
@@ -96,6 +103,8 @@ void Bird::makeBirdFall(){
     }
 
 }
+
+//function that stops the bird animation i.e stops the bird from flying
 void Bird::stopFlying(){
     BirdAnimation->stop();
     BirdRotation->stop();
@@ -106,6 +115,7 @@ qreal Bird::y() const
     return m_y;
 }
 
+//Updates the new position of the bird
 void Bird::setY(qreal newY)
 {
     moveBy(0, (newY - m_y));
@@ -117,6 +127,8 @@ qreal Bird::rotation() const
     return m_rotation;
 }
 
+
+//function that handles the transformation of the bird when it rotates
 void Bird::setRotation(qreal newRotation)
 {
     m_rotation = newRotation;

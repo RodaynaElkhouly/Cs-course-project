@@ -1,6 +1,5 @@
 release/bird.o
 release/game.o
-release/ground.o
 release/main.o
 release/mainwindow.o
 release/pipe.o

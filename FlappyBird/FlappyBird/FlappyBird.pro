@@ -11,7 +11,6 @@ CONFIG += c++17
 SOURCES += \
     bird.cpp \
     game.cpp \
-    ground.cpp \
     main.cpp \
     mainwindow.cpp \
     pipe.cpp \
@@ -20,7 +19,6 @@ SOURCES += \
 HEADERS += \
     bird.h \
     game.h \
-    ground.h \
     mainwindow.h \
     pipe.h \
     prize.h

@@ -40,6 +40,7 @@ protected:
     QGraphicsPixmapItem *startImage;
     QGraphicsPixmapItem *gameOverImage;
     QGraphicsPixmapItem *BackgroundPic;
+    QGraphicsPixmapItem *YouWon;
     QGraphicsTextItem *scoreText;
     QGraphicsTextItem *healthDisplay;
     QGraphicsTextItem *timerDisplay;
