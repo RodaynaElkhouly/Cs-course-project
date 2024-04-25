@@ -263,7 +263,7 @@ void Game::cleanPrizes(){
 
 void Game::displayYouWon(){
 
-
+    YouWon = new QGraphicsPixmapItem;
 
 
 }
