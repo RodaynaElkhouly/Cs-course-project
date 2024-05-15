@@ -25,8 +25,7 @@ void MainWindow::SpawnLevel(){
     currentLevel++;
     switch(currentLevel){
     case 1:
-        newTimeLimit = 60 - 5 * currentLevel;
-        if (newTimeLimit < 30) newTimeLimit = 30;
+        newTimeLimit = 60;
         game = new Game(currentLevel, 3, 0, newTimeLimit, 3, this);
         score = game->getBestScore();
 
