@@ -58,6 +58,7 @@ protected:
     int itemsToCollect;
     int BestScore;
     int currentLevel;
+    int levelTime;
     bool isLevelCompleted;
     bool isGameOn = 0;
     bool isGameOver;

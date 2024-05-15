@@ -11,9 +11,10 @@
 #include <QDebug>
 
 
-Game::Game(int level, int h, int score, int time, int items, QObject *parent) : QGraphicsScene(parent), currentLevel(level), Health(h), Score(0) , remainingTime(time) , itemsToCollect(items) ,
+Game::Game(int level, int h, int score, int time, int items, QObject *parent) : QGraphicsScene(parent), currentLevel(level), Health(h), Score(score) , remainingTime(time) , itemsToCollect(items) ,
     BestScore(score){
 
+    levelTime = time;
     setSceneRect(0, 0, 450, 650); //Intializing Scene and setting width and height
 
     //Intializing background Image
@@ -40,8 +41,6 @@ Game::Game(int level, int h, int score, int time, int items, QObject *parent) : 
     itemDisplay = new QGraphicsTextItem();
     itemDisplay->setFont(QFont("Times new Roman", 16, QFont::Bold));
     itemDisplay->setDefaultTextColor(Qt::black);
-
-    itemsCount += 3;
 
     spawnBird();
     setUpTimers();
@@ -72,7 +71,6 @@ void Game::startGame(){
     isGameOver = 0;
     //Removing the start image as soon as the game starts
     removeItem(startImage);
-
     delete(startImage);
 
     //Starting the animation of the bird
@@ -299,14 +297,12 @@ void Game::FreezeScene(){
 //function that allows you to retry level by cleaning pipes and prizes that were in the previous trial
 //restarts the timer sets to 1 min and the game is on
 void Game::retryLevel(){
-
         cleanPrizes();
         cleanPipes();
         Score = 0;
-        remainingTime = 60;
+        remainingTime = levelTime;
         restart = true;
         isGameOver = 0;
-
 
 }
 
@@ -320,7 +316,6 @@ void Game::keyPressEvent(QKeyEvent *event){
         startGame();
     }
     if(restart == true){
-
         restartGame();
     }
 
@@ -405,6 +400,9 @@ void Game::displayGameOver(){
     addItem(scoreText);
     scoreText->setPos(QPointF(gameOverImage->pos().x() + (gameOverImage->boundingRect().width() - scoreText->boundingRect().width())  ,  gameOverImage->pos().y() + (gameOverImage->boundingRect().height() + 10)));
 
+    isGameOn = true;
+    restart = false;
+    isGameOver = 1;
 
 }
 
