@@ -4,14 +4,15 @@
 #include "bird.h"
 #include <QObject>
 #include <QGraphicsScene>
+#include <QGraphicsView>
 #include <QGraphicsPixmapItem>
 #include <QKeyEvent>
 #include <QTimer>
 #include <QDebug>
 
 
-Game::Game(QObject *parent) : QGraphicsScene(parent), Health(3), Score(0) , remainingTime(60) , itemsToCollect(3) ,
-    BestScore(0){
+Game::Game(int level, int h, int score, int time, int items, QObject *parent) : QGraphicsScene(parent), currentLevel(level), Health(h), Score(0) , remainingTime(time) , itemsToCollect(items) ,
+    BestScore(score){
 
     setSceneRect(0, 0, 450, 650); //Intializing Scene and setting width and height
 
@@ -39,6 +40,8 @@ Game::Game(QObject *parent) : QGraphicsScene(parent), Health(3), Score(0) , rema
     itemDisplay = new QGraphicsTextItem();
     itemDisplay->setFont(QFont("Times new Roman", 16, QFont::Bold));
     itemDisplay->setDefaultTextColor(Qt::black);
+
+    itemsCount += 3;
 
     spawnBird();
     setUpTimers();
@@ -215,8 +218,24 @@ void Game::handleItemCollected(){
             }
 
         }
-        //A one second delay before the congrutaltions message displays
-        QTimer::singleShot(1000, this, &Game::displayYouWon);
+        emit LevelCompleted();
+
+
+
+    /*
+        if(currentLevel <= 5){
+            int newTime = 60 - 5 * currentLevel;
+            if(newTime < 30){
+                newTime = 30;
+            }
+
+            emit LevelCompleted(currentLevel, 3, BestScore, newTime, itemsCount);
+
+        }else{
+            QTimer::singleShot(1000, this, &Game::displayYouWon);
+        }
+ */
+
     }
 
 
@@ -283,10 +302,6 @@ void Game::retryLevel(){
 
         cleanPrizes();
         cleanPipes();
-
-
-
-
         Score = 0;
         remainingTime = 60;
         restart = true;

@@ -7,15 +7,61 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     //Creating the game
-    game = new Game(this);
-    game->setSceneRect(0, 0, 450, 650);
 
+    SpawnLevel();
     //Disabling scrollbars
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    //Setting the scene to the view
+
+
+}
+
+void MainWindow::SpawnLevel(){
+
+    //Level one
+
+
+    currentLevel++;
+    switch(currentLevel){
+    case 1:
+        newTimeLimit = 60 - 5 * currentLevel;
+        if (newTimeLimit < 30) newTimeLimit = 30;
+        game = new Game(currentLevel, 3, 0, newTimeLimit, 3, this);
+
+        break;
+    case 2:
+        newTimeLimit = 60 - 5 * currentLevel;
+        if (newTimeLimit < 30) newTimeLimit = 30;
+        game = new Game(currentLevel, 3, 0, newTimeLimit, 4, this);
+
+        break;
+    case 3:
+        newTimeLimit = 60 - 5 * currentLevel;
+        if (newTimeLimit < 30) newTimeLimit = 30;
+        game = new Game(currentLevel, 3, 0, newTimeLimit, 6, this);
+
+        break;
+    case 4:
+        newTimeLimit = 60 - 5 * currentLevel;
+        if (newTimeLimit < 30) newTimeLimit = 30;
+        game = new Game(currentLevel, 3, 0, newTimeLimit, 8, this);
+
+        break;
+    case 5:
+        newTimeLimit = 60 - 5 * currentLevel;
+        if (newTimeLimit < 30) newTimeLimit = 30;
+        game = new Game(currentLevel, 3, 0, newTimeLimit, 10, this);
+        break;
+
+
+    }
+
+    game->setSceneRect(0, 0, 450, 650);
+    connect(game, &Game::LevelCompleted, this, &MainWindow::SpawnLevel);
     ui->graphicsView->setScene(game);
+
+
 
 }
 

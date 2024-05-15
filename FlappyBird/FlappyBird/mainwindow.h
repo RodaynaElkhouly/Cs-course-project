@@ -18,8 +18,12 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+private slots:
+    void SpawnLevel();
 
 private:
+    int currentLevel = 0;
+    int newTimeLimit;
     Ui::MainWindow *ui;
     Game *game;
     QGraphicsPixmapItem *BackgroundPic;

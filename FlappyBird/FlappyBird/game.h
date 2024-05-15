@@ -16,7 +16,7 @@ class Game : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    Game(QObject *parent = nullptr);
+    Game(int level, int h, int score, int time, int items, QObject *parent = nullptr);
     void startGame();
     void retryLevel();
     void displayYouWon();
@@ -47,6 +47,7 @@ protected:
     QGraphicsTextItem *healthDisplay;
     QGraphicsTextItem *timerDisplay;
     QGraphicsTextItem *itemDisplay;
+    QGraphicsTextItem *levelDisplay;
     Bird * birdItem;
     QTimer *gameTimer;
     QTimer *pipeTimer;
@@ -56,6 +57,8 @@ protected:
     int remainingTime;
     int itemsToCollect;
     int BestScore;
+    int currentLevel;
+    bool isLevelCompleted;
     bool isGameOn = 0;
     bool isGameOver;
     void setUpTimers();
@@ -64,9 +67,11 @@ protected:
     void cleanPipes();
     void cleanPrizes();
     bool restart = false;
+    int itemsCount = 3;
 
 
-
+signals:
+    void LevelCompleted();
 
 };
 
