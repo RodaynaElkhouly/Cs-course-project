@@ -133,7 +133,6 @@ debug/qrc_Resources.cpp: ../FlappyBird/Resources.qrc \
 		../FlappyBird/gameover.png \
 		../FlappyBird/prizeImage-removebg-preview.png \
 		../FlappyBird/YouwONpng \
-		../FlappyBird/ground(1).png \
 		../FlappyBird/pillarr.png \
 		../FlappyBird/Background.jpg \
 		../FlappyBird/down.png \
@@ -1310,7 +1309,23 @@ debug/game.o: ../FlappyBird/game.cpp ../FlappyBird/game.h \
 		../FlappyBird/pipe.h \
 		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QGraphicsItemGroup \
 		../FlappyBird/prize.h \
-		C:/Qt/6.7.0/mingw_64/include/QtGui/QKeyEvent \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/QGraphicsView \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qgraphicsview.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpainter.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qfontinfo.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qfontmetrics.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qscrollarea.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qwidget.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qaction.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qkeysequence.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qicon.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qpalette.h \
+		C:/Qt/6.7.0/mingw_64/include/QtWidgets/qsizepolicy.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qcursor.h \
+		C:/Qt/6.7.0/mingw_64/include/QtGui/qbitmap.h \
 		C:/Qt/6.7.0/mingw_64/include/QtGui/qevent.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qiodevice.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qurl.h \
@@ -1347,7 +1362,8 @@ debug/game.o: ../FlappyBird/game.cpp ../FlappyBird/game.h \
 		C:/Qt/6.7.0/mingw_64/include/QtGui/qinputmethod.h \
 		C:/Qt/6.7.0/mingw_64/include/QtCore/qlocale.h \
 		C:/Qt/6.7.0/mingw_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.7.0/mingw_64/include/QtGui/qkeysequence.h
+		C:/Qt/6.7.0/mingw_64/include/QtGui/QKeyEvent \
+		C:/Qt/6.7.0/mingw_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\game.o ..\FlappyBird\game.cpp
 
 debug/main.o: ../FlappyBird/main.cpp ../FlappyBird/mainwindow.h \

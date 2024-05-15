@@ -233,19 +233,6 @@ void Game::handleItemCollected(){
 
 
 
-    /*
-        if(currentLevel <= 5){
-            int newTime = 60 - 5 * currentLevel;
-            if(newTime < 30){
-                newTime = 30;
-            }
-
-            emit LevelCompleted(currentLevel, 3, BestScore, newTime, itemsCount);
-
-        }else{
-            QTimer::singleShot(1000, this, &Game::displayYouWon);
-        }
- */
 
     }
 

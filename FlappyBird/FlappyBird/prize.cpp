@@ -18,7 +18,7 @@ Prize::Prize(QObject *parent) : QObject(parent) {
     crownAnimation->setStartValue(400);
     crownAnimation->setEndValue(-50);
     crownAnimation->setEasingCurve(QEasingCurve::Linear);
-    crownAnimation->setDuration(3000);
+    crownAnimation->setDuration(2000);
 
     connect(crownAnimation, &QPropertyAnimation::finished, this, &QObject::deleteLater);
     crownAnimation->start();
