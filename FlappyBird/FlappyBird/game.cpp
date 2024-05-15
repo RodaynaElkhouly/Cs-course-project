@@ -11,8 +11,9 @@
 #include <QDebug>
 
 
-Game::Game(int level, int h, int score, int time, int items, QObject *parent) : QGraphicsScene(parent), currentLevel(level), Health(h), Score(0) , remainingTime(time) , itemsToCollect(items) ,
-    BestScore(score){
+Game::Game(int level, int h, int score, int time, int items, QObject *parent)
+    : QGraphicsScene(parent), currentLevel(level), Health(h), Score(score), remainingTime(time), itemsToCollect(items), BestScore(score)
+{
 
     levelTime = time;
     setSceneRect(0, 0, 450, 650); //Intializing Scene and setting width and height
@@ -196,60 +197,49 @@ void Game::spawnPrizes(){
 
 
 //A function that hanldes the logic of items collected
-void Game::handleItemCollected(){
-
-    //Updating the items collected and displaying it on the scene
+void Game::handleItemCollected()
+{
+    // Updating the items collected and displaying it on the scene
     itemsToCollect--;
 
     itemDisplay->setPlainText("Crowns: " + QString::number(itemsToCollect));
     itemDisplay->setPos(QPointF(0, 650 - timerDisplay->boundingRect().height()));
 
-    //Once items are collected, the game stops and the player wins
-    if(itemsToCollect == 0){
-        //Logic that handles the game stoppingg
+    // Once items are collected, the game stops and the player wins
+    if (itemsToCollect == 0) {
+        // Logic that handles the game stopping
         prizeTimer->stop();
         gameTimer->stop();
         birdItem->stopFlying();
         pipeTimer->stop();
 
-        //pipe and prize item animation stops
+        // Pipe and prize item animation stops
         QList<QGraphicsItem *> ItemsInScene = items();
-        foreach(QGraphicsItem *Item, ItemsInScene){
+        foreach (QGraphicsItem *Item, ItemsInScene) {
             Pipe *pipe = dynamic_cast<Pipe *>(Item);
-            if(pipe){
+            if (pipe) {
                 pipe->stopPipe();
             }
-
         }
-        foreach(QGraphicsItem *Item, ItemsInScene){
+        foreach (QGraphicsItem *Item, ItemsInScene) {
             Prize *prize = dynamic_cast<Prize *>(Item);
-            if(prize){
+            if (prize) {
                 prize->stopPrize();
             }
-
         }
-        emit LevelCompleted();
 
-
-
-    /*
-        if(currentLevel <= 5){
-            int newTime = 60 - 5 * currentLevel;
-            if(newTime < 30){
-                newTime = 30;
+        // Adjust remaining time if beyond level 1
+        if (currentLevel > 1) {
+            remainingTime -= 5;
+            if (remainingTime < 30) {
+                remainingTime = 30;
             }
-
-            emit LevelCompleted(currentLevel, 3, BestScore, newTime, itemsCount);
-
-        }else{
-            QTimer::singleShot(1000, this, &Game::displayYouWon);
         }
- */
 
+        emit LevelCompleted();
     }
-
-
 }
+
 
 // function tht connects the collision with the timer(stops) and the scene ( freezes)
 void Game::handlePipeCollision(){
@@ -308,6 +298,7 @@ void Game::FreezeScene(){
 
 //function that allows you to retry level by cleaning pipes and prizes that were in the previous trial
 //restarts the timer sets to 1 min and the game is on
+<<<<<<< Updated upstream
 void Game::retryLevel(){
         cleanPrizes();
         cleanPipes();
@@ -316,6 +307,22 @@ void Game::retryLevel(){
         restart = true;
         isGameOver = 0;
 
+=======
+void Game::retryLevel() {
+    cleanPrizes();
+    cleanPipes();
+    Score = 0;
+    restart = true;
+    isGameOver = 0;
+
+    // Don't reset remaining time to 60 when retrying the level
+    if (currentLevel > 1) {
+        remainingTime = remainingTime-5; // Adjust as needed
+    }
+
+    // Restart the game
+    restartGame();
+>>>>>>> Stashed changes
 }
 
 
@@ -397,12 +404,13 @@ void Game::displayYouWon(){
 }
 //function that displays the image game over whenever you fail to collect the items and the health is 0
 
-void Game::displayGameOver(){
-
+void Game::displayGameOver() {
+    // Display the game over image
     gameOverImage = new QGraphicsPixmapItem(QPixmap(":/resources/GameOver/gameover.png").scaled(200, 200));
     addItem(gameOverImage);
     gameOverImage->setPos(QPointF(gameOverImage->boundingRect().width() / 2, gameOverImage->boundingRect().height() / 2));
 
+    // Display the final score
     QString ScoreMessage = "<p> Score: " + QString::number(Score) + "<p> Best Score: " + QString::number(BestScore) + "<p>";
 
     scoreText = new QGraphicsTextItem();
@@ -410,11 +418,14 @@ void Game::displayGameOver(){
     scoreText->setFont(QFont("Times new Roman", 16, QFont::Bold));
     scoreText->setDefaultTextColor(Qt::red);
     addItem(scoreText);
+<<<<<<< Updated upstream
     scoreText->setPos(QPointF(gameOverImage->pos().x() + (gameOverImage->boundingRect().width() - scoreText->boundingRect().width())  ,  gameOverImage->pos().y() + (gameOverImage->boundingRect().height() + 10)));
 
     isGameOn = true;
     restart = false;
     isGameOver = 1;
 
+=======
+    scoreText->setPos(QPointF(gameOverImage->pos().x() + (gameOverImage->boundingRect().width() - scoreText->boundingRect().width()),  gameOverImage->pos().y() + (gameOverImage->boundingRect().height() + 10)));
+>>>>>>> Stashed changes
 }
-
