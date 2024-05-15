@@ -22,6 +22,7 @@ private slots:
     void SpawnLevel();
 
 private:
+    bool lifeLost;
     int currentLevel = 0;
     int newTimeLimit;
     int score;
