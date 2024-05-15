@@ -10,9 +10,6 @@
     <qresource prefix="/ressources/backgroundimage">
         <file>Background.jpg</file>
     </qresource>
-    <qresource prefix="/ressources/grounds">
-        <file>ground(1).png</file>
-    </qresource>
     <qresource prefix="/resources/PressSpace">
         <file>klipartz.com.png</file>
     </qresource>
