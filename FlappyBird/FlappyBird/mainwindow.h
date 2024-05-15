@@ -18,8 +18,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
 private slots:
     void SpawnLevel();
+    void resetGame();
 
 private:
     int currentLevel = 0;

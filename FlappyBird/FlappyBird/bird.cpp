@@ -3,9 +3,10 @@
 #include <QTimer>
 #include <QGraphicsScene>
 //construstor
-Bird::Bird(QPixmap pixmap) : wing(WingPosition::Up), isWingDir(0), m_y(0)
+Bird::Bird(QPixmap pixmap, int w, int h) : wing(WingPosition::Up), isWingDir(0), m_y(0)
 {
-
+    widthBird = w;
+    heightBird = h;
     setPixmap (pixmap);
 
     QTimer * wingTimer= new QTimer(this);
@@ -42,17 +43,17 @@ void Bird :: updatePixmap(){
     if (wing == WingPosition::Middle){
 
         if (isWingDir){
-            setPixmap(QPixmap(":/ressources/bird/up.png"));
+            setPixmap(QPixmap(":/ressources/bird/up.png").scaled(widthBird, heightBird));
             wing = WingPosition::Up;
             isWingDir = 0;
         }
         else {
-            setPixmap(QPixmap(":/ressources/bird/down.png"));
+            setPixmap(QPixmap(":/ressources/bird/down.png").scaled(widthBird, heightBird));
             wing = WingPosition::Down;
             isWingDir = 1;
         }
     }else{
-        setPixmap(QPixmap(":/ressources/bird/middle.png"));
+        setPixmap(QPixmap(":/ressources/bird/middle.png").scaled(widthBird, heightBird));
         wing = WingPosition::Middle;
     }
 

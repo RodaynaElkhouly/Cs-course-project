@@ -28,7 +28,9 @@ private:
     qreal groundPos;
 
 public:
-    explicit Bird ( QPixmap pixmap);
+    explicit Bird ( QPixmap pixmap, int, int);
+    int widthBird;
+    int heightBird;
     qreal y() const;
     qreal rotation() const;
     void Jump();

@@ -11,11 +11,14 @@
 #include <QDebug>
 
 
-Game::Game(int level, int h, int score, int time, int items, QObject *parent) : QGraphicsScene(parent), currentLevel(level), Health(h), Score(0) , remainingTime(time) , itemsToCollect(items) ,
+Game::Game(int level, int h, int score, int time, int items, int w, int hh, QObject *parent) : QGraphicsScene(parent), currentLevel(level), Health(h), Score(0) , remainingTime(time) , itemsToCollect(items) ,
     BestScore(score){
 
     levelTime = time;
+    wBird = w;
+    hBird = hh;
     setSceneRect(0, 0, 450, 650); //Intializing Scene and setting width and height
+
 
     //Intializing background Image
     BackgroundPic = new QGraphicsPixmapItem(QPixmap(":/ressources/backgroundimage/Background.jpg"));
@@ -46,8 +49,8 @@ Game::Game(int level, int h, int score, int time, int items, QObject *parent) : 
     levelDisplay->setFont(QFont("Times new Roman", 16, QFont::Bold));
     levelDisplay->setDefaultTextColor(Qt::black);
 
+    spawnBird(wBird, hBird);
 
-    spawnBird();
     setUpTimers();
 
 }
@@ -63,9 +66,11 @@ QString Game::formatTime(int seconds){
 int Game::getBestScore() const{
     return BestScore;
 }
-void Game::spawnBird(){
+void Game::spawnBird(int w, int h){
 
-    birdItem = new Bird(QPixmap(":/ressources/bird/up.png"));
+    //qDebug() << "Scaling bird to width:" << w << "height:" << h;
+
+    birdItem = new Bird(QPixmap(":/ressources/bird/up.png").scaled(w, h), w, h);
     this->addItem(birdItem);
 
 }
@@ -403,6 +408,8 @@ void Game::displayGameOver(){
     isGameOn = true;
     restart = false;
     isGameOver = 1;
+
+    emit GameOver();
 
 }
 

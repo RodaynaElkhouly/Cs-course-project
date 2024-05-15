@@ -16,7 +16,7 @@ class Game : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    Game(int level, int h, int score, int time, int items, QObject *parent = nullptr);
+    Game(int level, int h, int score, int time, int items, int w, int hh, QObject *parent = nullptr);
     void startGame();
     void retryLevel();
     void displayYouWon();
@@ -29,7 +29,7 @@ public:
     bool getGameOn();
     void setGameOn(bool);
     void keyPressEvent(QKeyEvent * event) override;
-    void spawnBird();
+    void spawnBird(int, int);
     void spawnPrizes();
     void spawnPipe();
     void handlePipeCollision();
@@ -54,6 +54,8 @@ protected:
     QTimer *gameTimer;
     QTimer *pipeTimer;
     QTimer *prizeTimer;
+    int wBird;
+    int hBird;
     int Score;
     int Health;
     int remainingTime;
@@ -74,6 +76,7 @@ protected:
 
 signals:
     void LevelCompleted();
+    void GameOver();
 
 };
 
