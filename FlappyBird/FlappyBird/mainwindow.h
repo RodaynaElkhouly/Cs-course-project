@@ -24,6 +24,7 @@ private slots:
 private:
     int currentLevel = 0;
     int newTimeLimit;
+    int score;
     Ui::MainWindow *ui;
     Game *game;
     QGraphicsPixmapItem *BackgroundPic;

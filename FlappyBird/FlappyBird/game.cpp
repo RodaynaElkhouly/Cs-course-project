@@ -11,7 +11,7 @@
 #include <QDebug>
 
 
-Game::Game(int level, int h, int score, int time, int items, QObject *parent) : QGraphicsScene(parent), currentLevel(level), Health(h), Score(score) , remainingTime(time) , itemsToCollect(items) ,
+Game::Game(int level, int h, int score, int time, int items, QObject *parent) : QGraphicsScene(parent), currentLevel(level), Health(h), Score(0) , remainingTime(time) , itemsToCollect(items) ,
     BestScore(score){
 
     levelTime = time;
@@ -42,6 +42,11 @@ Game::Game(int level, int h, int score, int time, int items, QObject *parent) : 
     itemDisplay->setFont(QFont("Times new Roman", 16, QFont::Bold));
     itemDisplay->setDefaultTextColor(Qt::black);
 
+    levelDisplay = new QGraphicsTextItem();
+    levelDisplay->setFont(QFont("Times new Roman", 16, QFont::Bold));
+    levelDisplay->setDefaultTextColor(Qt::black);
+
+
     spawnBird();
     setUpTimers();
 
@@ -55,7 +60,9 @@ QString Game::formatTime(int seconds){
 }
 
 //A function that spawns the bird to the scene
-
+int Game::getBestScore() const{
+    return BestScore;
+}
 void Game::spawnBird(){
 
     birdItem = new Bird(QPixmap(":/ressources/bird/up.png"));
@@ -78,13 +85,13 @@ void Game::startGame(){
 
     //Displaying health once the game starts
     healthDisplay->setPlainText("Health: " + QString::number(Health));
-    healthDisplay->setPos( QPointF(450 - healthDisplay->boundingRect().width(),(650 - healthDisplay->boundingRect().height())));
+    healthDisplay->setPos(QPointF(450 - healthDisplay->boundingRect().width(),(650 - healthDisplay->boundingRect().height())));
     this->addItem(healthDisplay);
 
 
     //Displaying timer once the game starts
     timerDisplay->setPlainText(formatTime(remainingTime));
-    timerDisplay->setPos(QPointF(450 / 2 - timerDisplay->boundingRect().width(), 0));
+    timerDisplay->setPos(QPointF(450 - timerDisplay->boundingRect().width(), 0));
     this->addItem(timerDisplay);
 
 
@@ -92,6 +99,11 @@ void Game::startGame(){
     itemDisplay->setPlainText("Crowns: " + QString::number(itemsToCollect));
     itemDisplay->setPos(QPointF(0, 650 - timerDisplay->boundingRect().height()));
     this->addItem(itemDisplay);
+
+    levelDisplay->setPlainText("Level: " + QString::number(currentLevel));
+    levelDisplay->setPos(QPointF(0,0));
+    this->addItem(levelDisplay);
+
 
 
     //Checking if the timers are not active, if they're not activing them to start
@@ -116,7 +128,7 @@ void Game::restartGame(){
     healthDisplay->setPos( QPointF(450 - healthDisplay->boundingRect().width(),(650 - healthDisplay->boundingRect().height())));
 
     timerDisplay->setPlainText(formatTime(remainingTime));
-    timerDisplay->setPos(QPointF(450 / 2 - timerDisplay->boundingRect().width(), 0));
+    timerDisplay->setPos(QPointF(450 - timerDisplay->boundingRect().width(), 0));
 
     itemDisplay->setPlainText("Crowns: " + QString::number(itemsToCollect));
     itemDisplay->setPos(QPointF(0, 650 - timerDisplay->boundingRect().height()));
@@ -248,7 +260,7 @@ void Game::handlePipeCollision(){
 void Game::UpdateTime(){
     remainingTime--;
     timerDisplay->setPlainText(formatTime(remainingTime));
-    timerDisplay->setPos(QPointF(450 / 2 - timerDisplay->boundingRect().width(), 0));
+    timerDisplay->setPos(QPointF(450 - timerDisplay->boundingRect().width(), 0));
 
     if(remainingTime == 0){
 

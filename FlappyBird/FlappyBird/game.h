@@ -36,6 +36,7 @@ public:
     void handleItemCollected();
     void safelyDeleteDisplay(QGraphicsTextItem* display);
     void restartGame();
+    int getBestScore() const;
 
 
 protected:
