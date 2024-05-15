@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QTimer>
 #include <QGraphicsPixmapItem>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -7,7 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     //Creating the game
-
     SpawnLevel();
     //Disabling scrollbars
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -26,7 +26,7 @@ void MainWindow::SpawnLevel(){
     switch(currentLevel){
     case 1:
         newTimeLimit = 60;
-        game = new Game(currentLevel, 3, 0, newTimeLimit, 3, this);
+        game = new Game(currentLevel, 3, 0, newTimeLimit, 2, this);
         score = game->getBestScore();
 
         break;
@@ -53,12 +53,16 @@ void MainWindow::SpawnLevel(){
         game = new Game(currentLevel, 3, score, newTimeLimit, 10, this);
         break;
 
-
     }
+
 
     game->setSceneRect(0, 0, 450, 650);
     connect(game, &Game::LevelCompleted, this, &MainWindow::SpawnLevel);
     ui->graphicsView->setScene(game);
+
+    if(game->isLevelCompleted && currentLevel > 5){
+        QTimer::singleShot(1000, game, &Game::displayYouWon);
+    }
 
 
 

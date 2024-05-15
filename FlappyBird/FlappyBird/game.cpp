@@ -229,6 +229,7 @@ void Game::handleItemCollected(){
 
         }
         emit LevelCompleted();
+        isLevelCompleted = true;
 
 
 

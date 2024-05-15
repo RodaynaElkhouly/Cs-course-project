@@ -37,6 +37,7 @@ public:
     void safelyDeleteDisplay(QGraphicsTextItem* display);
     void restartGame();
     int getBestScore() const;
+    bool isLevelCompleted;
 
 
 protected:
@@ -60,7 +61,6 @@ protected:
     int BestScore;
     int currentLevel;
     int levelTime;
-    bool isLevelCompleted;
     bool isGameOn = 0;
     bool isGameOver;
     void setUpTimers();
