@@ -25,4 +25,10 @@
     <qresource prefix="/resources/startimage">
         <file>Overlay.png</file>
     </qresource>
+    <qresource prefix="/resources/audios">
+        <file>PipeCollision.mp3</file>
+        <file>FlappingSound.mp3</file>
+        <file>Point.mp3</file>
+        <file>Background.mp3</file>
+    </qresource>
 </RCC>

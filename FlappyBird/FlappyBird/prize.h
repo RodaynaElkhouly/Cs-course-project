@@ -11,15 +11,16 @@ class Prize :public QObject, public QGraphicsPixmapItem
     Q_PROPERTY(qreal x READ x WRITE setX);
 public:
     Prize(QObject *parent = nullptr);
+    ~Prize();
     qreal x() const;
     void setX(qreal newX);
     void stopPrize();
     void detectCollision();
-    QGraphicsPixmapItem *Crown ;
+    QGraphicsPixmapItem *Crown = nullptr ;
 
 private:
 
-    QPropertyAnimation *crownAnimation;
+    QPropertyAnimation *crownAnimation = nullptr;
     int yPos;
 
     qreal m_x;

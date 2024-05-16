@@ -27,6 +27,20 @@ Bird::Bird(QPixmap pixmap, int w, int h) : wing(WingPosition::Up), isWingDir(0),
 
 
 }
+//Destructors that checks if pointer objects are null if they are, it deletes them and resetes theyr pointer to null
+Bird::~Bird(){
+    if(BirdAnimation){
+        BirdAnimation->stop();
+        delete BirdAnimation;
+        BirdAnimation = nullptr;
+    }
+
+    if(BirdRotation){
+        BirdRotation->stop();
+        delete BirdRotation;
+        BirdRotation = nullptr;
+    }
+}
 //function that controls the bird rotation
 void Bird :: rotateTo(const qreal &end, const int &duration, const QEasingCurve &curve){
 

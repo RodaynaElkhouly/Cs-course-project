@@ -26,6 +26,21 @@ Prize::Prize(QObject *parent) : QObject(parent) {
 
 }
 
+//Destructor that checks if pointers are not null , if they are not, it deletes them and sets them to null
+Prize:: ~Prize(){
+    if(crownAnimation){
+        crownAnimation->stop();
+        delete crownAnimation;
+        crownAnimation = nullptr;
+    }
+
+    if(Crown){
+        delete Crown;
+        Crown = nullptr;
+
+    }
+}
+
 //A function that detects whether the bird collides with the crown to remove it from the scene and send a signal to handle the collision
 void Prize::detectCollision(){
 

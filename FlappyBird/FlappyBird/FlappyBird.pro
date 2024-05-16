@@ -1,4 +1,5 @@
-QT       += core gui
+QT       += core gui \
+            multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,20 +12,26 @@ CONFIG += c++17
 SOURCES += \
     bird.cpp \
     game.cpp \
+    gameoverwindow.cpp \
     main.cpp \
     mainwindow.cpp \
     pipe.cpp \
-    prize.cpp
+    prize.cpp \
+    youwonwindow.cpp
 
 HEADERS += \
     bird.h \
     game.h \
+    gameoverwindow.h \
     mainwindow.h \
     pipe.h \
-    prize.h
+    prize.h \
+    youwonwindow.h
 
 FORMS += \
-    mainwindow.ui
+    gameoverwindow.ui \
+    mainwindow.ui \
+    youwonwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

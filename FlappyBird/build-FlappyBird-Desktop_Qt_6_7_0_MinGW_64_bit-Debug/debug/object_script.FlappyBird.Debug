@@ -1,12 +1,16 @@
 debug/bird.o
 debug/game.o
+debug/gameoverwindow.o
 debug/main.o
 debug/mainwindow.o
 debug/pipe.o
 debug/prize.o
+debug/youwonwindow.o
 debug/qrc_Resources.o
 debug/moc_bird.o
 debug/moc_game.o
+debug/moc_gameoverwindow.o
 debug/moc_mainwindow.o
 debug/moc_pipe.o
 debug/moc_prize.o
+debug/moc_youwonwindow.o

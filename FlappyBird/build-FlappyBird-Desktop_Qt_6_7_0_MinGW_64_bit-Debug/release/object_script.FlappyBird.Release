@@ -1,12 +1,16 @@
 release/bird.o
 release/game.o
+release/gameoverwindow.o
 release/main.o
 release/mainwindow.o
 release/pipe.o
 release/prize.o
+release/youwonwindow.o
 release/qrc_Resources.o
 release/moc_bird.o
 release/moc_game.o
+release/moc_gameoverwindow.o
 release/moc_mainwindow.o
 release/moc_pipe.o
 release/moc_prize.o
+release/moc_youwonwindow.o

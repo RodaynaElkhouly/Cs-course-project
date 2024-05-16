@@ -25,6 +25,19 @@ Pipe::Pipe() {
 
 }
 
+//A destructor that checks if the pointers are not null, if not, it deletes them and sets them to null
+Pipe::~Pipe(){
+    if(PipeAnimation){
+        PipeAnimation->stop();
+        delete PipeAnimation;
+        PipeAnimation = nullptr;
+    }
+
+    if(Pipes){
+        delete Pipes;
+        Pipes = nullptr;
+    }
+}
 // A boolean function that returns true whenever the bird collides with the pipe
 
 bool Pipe::detectCollision(){

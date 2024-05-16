@@ -19,6 +19,37 @@ Game::Game(int level, int h, int score, int time, int items, int w, int hh, QObj
     hBird = hh;
     setSceneRect(0, 0, 450, 650); //Intializing Scene and setting width and height
 
+    PipeCollisionSound = new QMediaPlayer();
+    PipeCollisionAudio = new QAudioOutput();
+    PipeCollisionSound->setSource(QUrl("qrc:/resources/audios/PipeCollision.mp3"));
+    PipeCollisionSound->setAudioOutput(PipeCollisionAudio);
+    PipeCollisionAudio->setVolume(50);
+
+
+    FlappingSound = new QMediaPlayer();
+    FlappinAudio = new QAudioOutput();
+    FlappingSound->setSource(QUrl("qrc:/resources/audios/FlappingSound.mp3"));
+    FlappingSound->setAudioOutput(FlappinAudio);
+    FlappinAudio->setVolume(50);
+
+
+
+    PointSound = new QMediaPlayer();
+    PointAudio = new QAudioOutput();
+    PointSound->setSource(QUrl("qrc:/resources/audios/Point.mp3"));
+    PointSound->setAudioOutput(PointAudio);
+    PointAudio->setVolume(50);
+
+
+    BackgroundSound = new QMediaPlayer();
+    BackgroundAudio = new QAudioOutput();
+    BackgroundSound->setSource(QUrl("qrc:/resources/audios/Background.mp3"));
+    BackgroundSound->setAudioOutput(BackgroundAudio);
+    BackgroundAudio->setVolume(100);
+
+
+
+
 
     //Intializing background Image
     BackgroundPic = new QGraphicsPixmapItem(QPixmap(":/ressources/backgroundimage/Background.jpg"));
@@ -55,6 +86,96 @@ Game::Game(int level, int h, int score, int time, int items, int w, int hh, QObj
 
 }
 
+//destructor that checks if objects are not null, if theyre not it deletes them and resets them to null
+
+Game::~Game(){
+    if(pipeTimer){
+        pipeTimer->stop();
+        delete pipeTimer;
+        pipeTimer = nullptr;
+    }
+
+    if(gameTimer){
+        gameTimer->stop();
+        delete gameTimer;
+        pipeTimer = nullptr;
+
+    }
+
+    if(prizeTimer){
+        prizeTimer->stop();
+        delete prizeTimer;
+        prizeTimer = nullptr;
+    }
+
+    delete PipeCollisionAudio;
+    delete PipeCollisionSound;
+
+    delete FlappinAudio;
+    delete FlappingSound;
+
+    delete PointSound;
+    delete PointAudio;
+
+    delete BackgroundSound;
+    delete BackgroundAudio;
+
+    if(BackgroundPic){
+        removeItem(BackgroundPic);
+        delete BackgroundPic;
+        BackgroundPic = nullptr;
+    }
+
+    if(startImage){
+        removeItem(startImage);
+        delete startImage;
+        startImage = nullptr;
+    }
+
+    if(healthDisplay){
+        removeItem(healthDisplay);
+        delete healthDisplay;
+
+    }
+
+    if(timerDisplay){
+        removeItem(timerDisplay);
+        delete timerDisplay;
+        timerDisplay = nullptr;
+
+    }
+
+    if(itemDisplay){
+        removeItem(itemDisplay);
+        delete itemDisplay;
+        itemDisplay = nullptr;
+    }
+
+    if(levelDisplay){
+        removeItem(levelDisplay);
+        delete levelDisplay;
+        levelDisplay = nullptr;
+
+    }
+
+    if(birdItem){
+        removeItem(birdItem);
+        delete birdItem;
+        birdItem = nullptr;
+    }
+
+    if(scoreText){
+        removeItem(scoreText);
+        delete scoreText;
+        scoreText = nullptr;
+    }
+
+    cleanPipes();
+    cleanPrizes();
+
+
+}
+
 //A function that displays the timer in mm:ss format
 QString Game::formatTime(int seconds){
     int minutes = seconds / 60;
@@ -62,13 +183,17 @@ QString Game::formatTime(int seconds){
     return QString("%1:%2").arg(minutes,2, 10, QLatin1Char('0')).arg(sec, 2, 10, QLatin1Char('0'));
 }
 
-//A function that spawns the bird to the scene
 int Game::getBestScore() const{
     return BestScore;
 }
+int Game::getScore() const{
+    return Score;
+}
+
+//A function that spawns the bird to the scene
 void Game::spawnBird(int w, int h){
 
-    //qDebug() << "Scaling bird to width:" << w << "height:" << h;
+
 
     birdItem = new Bird(QPixmap(":/ressources/bird/up.png").scaled(w, h), w, h);
     this->addItem(birdItem);
@@ -78,12 +203,13 @@ void Game::spawnBird(int w, int h){
 
 //A function that starts the game when the space bar is pressed
 void Game::startGame(){
-
+    BackgroundSound->play();
     isGameOn = true;
     isGameOver = 0;
     //Removing the start image as soon as the game starts
     removeItem(startImage);
     delete(startImage);
+    startImage = nullptr;
 
     //Starting the animation of the bird
     birdItem->startFlying();
@@ -129,6 +255,7 @@ void Game::startGame(){
 
 void Game::restartGame(){
 
+    BackgroundSound->play();
     healthDisplay->setPlainText("Health: " + QString::number(Health));
     healthDisplay->setPos( QPointF(450 - healthDisplay->boundingRect().width(),(650 - healthDisplay->boundingRect().height())));
 
@@ -203,11 +330,15 @@ void Game::spawnPrizes(){
 //A function that hanldes the logic of items collected
 void Game::handleItemCollected(){
 
+    PointSound->play();
+
     //Updating the items collected and displaying it on the scene
     itemsToCollect--;
-
     itemDisplay->setPlainText("Crowns: " + QString::number(itemsToCollect));
     itemDisplay->setPos(QPointF(0, 650 - timerDisplay->boundingRect().height()));
+
+    //updating the score
+    UpdateScore();
 
     //Once items are collected, the game stops and the player wins
     if(itemsToCollect == 0){
@@ -216,6 +347,7 @@ void Game::handleItemCollected(){
         gameTimer->stop();
         birdItem->stopFlying();
         pipeTimer->stop();
+        BackgroundSound->stop();
 
         //pipe and prize item animation stops
         QList<QGraphicsItem *> ItemsInScene = items();
@@ -246,6 +378,7 @@ void Game::handleItemCollected(){
 
 // function tht connects the collision with the timer(stops) and the scene ( freezes)
 void Game::handlePipeCollision(){
+    PipeCollisionSound->play();
     pipeTimer->stop();
     FreezeScene();
 }
@@ -262,9 +395,10 @@ void Game::UpdateTime(){
 
 
 }
-//function that stops timer, bird animation and prize timer whenever the scene freezes
+//function that stops audio, timer, bird animation and prize timer whenever the scene freezes
 void Game::FreezeScene(){
 
+    BackgroundSound->stop();
     prizeTimer->stop();
     gameTimer->stop();
     birdItem->stopFlying();
@@ -291,7 +425,10 @@ void Game::FreezeScene(){
     healthDisplay->setPlainText("Health: " + QString::number(Health));
 //checking if health is 0, the player loses
     if(Health <= 0){
-        displayGameOver();
+        isGameOn = true;
+        restart = false;
+        isGameOver = 1;
+        emit GameOver();
     }else{
         //else, the level restarts
         QTimer::singleShot(1000, this, &Game::retryLevel);
@@ -327,7 +464,9 @@ void Game::keyPressEvent(QKeyEvent *event){
 // if it's on it will check if the player didn't lose yet, then the space bar will make the bird jump
     if(event->key() == Qt::Key_Space){
         if(isGameOver == 0){
+
             birdItem->Jump();
+            FlappingSound->play();
 
         }
 
@@ -360,7 +499,6 @@ void Game::cleanPrizes(){
         if(prizes){
 
             this->removeItem(prizes);
-
             delete prizes;
         }
 
@@ -368,48 +506,3 @@ void Game::cleanPrizes(){
 
 
 }
-//function that displays the image you won whenever you collect the items and the time is not over
-void Game::displayYouWon(){
-
-    YouWon = new QGraphicsPixmapItem(QPixmap(":/resources/youWon/YouwONpng").scaled(200,200));
-    addItem(YouWon);
-    YouWon->setPos(QPointF(YouWon->boundingRect().width() / 2, YouWon->boundingRect().height() / 2));
-
-    QString ScoreMessage = "<p> Score: " + QString::number(Score) + "<p> Best Score: " + QString::number(BestScore) + "<p>";
-
-    scoreText = new QGraphicsTextItem();
-    scoreText->setHtml(ScoreMessage);
-    scoreText->setFont(QFont("Times new Roman", 16, QFont::Bold));
-    scoreText->setDefaultTextColor(Qt::red);
-    addItem(scoreText);
-    scoreText->setPos(QPointF(YouWon->pos().x() + (YouWon->boundingRect().width() - scoreText->boundingRect().width())  ,  YouWon->pos().y() + (YouWon->boundingRect().height() + 10)));
-
-
-
-
-}
-//function that displays the image game over whenever you fail to collect the items and the health is 0
-
-void Game::displayGameOver(){
-
-    gameOverImage = new QGraphicsPixmapItem(QPixmap(":/resources/GameOver/gameover.png").scaled(200, 200));
-    addItem(gameOverImage);
-    gameOverImage->setPos(QPointF(gameOverImage->boundingRect().width() / 2, gameOverImage->boundingRect().height() / 2));
-
-    QString ScoreMessage = "<p> Score: " + QString::number(Score) + "<p> Best Score: " + QString::number(BestScore) + "<p>";
-
-    scoreText = new QGraphicsTextItem();
-    scoreText->setHtml(ScoreMessage);
-    scoreText->setFont(QFont("Times new Roman", 16, QFont::Bold));
-    scoreText->setDefaultTextColor(Qt::red);
-    addItem(scoreText);
-    scoreText->setPos(QPointF(gameOverImage->pos().x() + (gameOverImage->boundingRect().width() - scoreText->boundingRect().width())  ,  gameOverImage->pos().y() + (gameOverImage->boundingRect().height() + 10)));
-
-    isGameOn = true;
-    restart = false;
-    isGameOver = 1;
-
-    emit GameOver();
-
-}
-

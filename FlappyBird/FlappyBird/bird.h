@@ -23,12 +23,13 @@ private:
 
     qreal m_y;
     qreal m_rotation;
-    QPropertyAnimation * BirdAnimation;
-    QPropertyAnimation * BirdRotation;
+    QPropertyAnimation * BirdAnimation = nullptr;
+    QPropertyAnimation * BirdRotation = nullptr;
     qreal groundPos;
 
 public:
     explicit Bird ( QPixmap pixmap, int, int);
+    ~Bird();
     int widthBird;
     int heightBird;
     qreal y() const;
@@ -44,7 +45,7 @@ public:
 signals:
 public slots:
     void setRotation(qreal newRotation);
-     void setY(qreal newY);
+    void setY(qreal newY);
     void rotateTo(const qreal &end, const int& duration, const QEasingCurve& curve);
 };
 
